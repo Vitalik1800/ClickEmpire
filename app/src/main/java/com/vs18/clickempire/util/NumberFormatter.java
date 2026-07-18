@@ -24,18 +24,18 @@ public final class NumberFormatter {
         }
 
         if (value < 1_000_000) {
-            return String.format(Locale.US, "%.2fK", value / 1_000.0);
+            return String.format(Locale.ROOT, "%.2fK", value / 1_000.0);
         }
 
         if (value < 1_000_000_000) {
-            return String.format(Locale.US, "%.2fM", value / 1_000_000.0);
+            return String.format(Locale.ROOT, "%.2fM", value / 1_000_000.0);
         }
 
         if (value < 1_000_000_000_000L) {
-            return String.format(Locale.US, "%.2fB", value / 1_000_000_000.0);
+            return String.format(Locale.ROOT, "%.2fB", value / 1_000_000_000.0);
         }
 
-        return String.format(Locale.US, "%.2fT", value / 1_000_000_000_000.0);
+        return String.format(Locale.ROOT, "%.2fT", value / 1_000_000_000_000.0);
     }
 
 }

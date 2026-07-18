@@ -1,6 +1,9 @@
 package com.vs18.clickempire.controller;
 
+import android.util.Log;
+
 import com.vs18.clickempire.model.Player;
+import com.vs18.clickempire.util.Constants;
 
 /**
  * Main game controller.
@@ -44,11 +47,17 @@ public class MainController {
 
         long income = player.getIncome();
 
+        Log.d(Constants.TAG,
+                "Income = " + income);
+
         if (income <= 0) {
             return;
         }
 
         player.addCoins(income);
+
+        Log.d(Constants.TAG,
+                "Coins = " + player.getCoins());
 
         statisticsController.addEarnedCoins(income);
         statisticsController.updateHighestBalance(player.getCoins());

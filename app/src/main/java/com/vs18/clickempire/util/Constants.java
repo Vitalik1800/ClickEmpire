@@ -25,6 +25,26 @@ public final class Constants {
      */
     public static final int MAX_LEVEL = 100;
 
+    /**
+     * Passive income update interval (1 second).
+     */
+    public static final long PASSIVE_INCOME_INTERVAL = 1000L;
+
+    /**
+     * Coin click animation scale.
+     */
+    public static final float CLICK_ANIMATION_SCALE = 0.9f;
+
+    /**
+     * Coin click animation duration (milliseconds).
+     */
+    public static final long CLICK_ANIMATION_DURATION = 70L;
+
+    /**
+     * Android Logs
+     */
+    public static final String TAG = "ClickEmpire";
+
     private Constants() {
 
     }
