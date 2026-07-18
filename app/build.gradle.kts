@@ -42,6 +42,9 @@ dependencies {
     // material
     implementation(libs.material.v1130)
 
+    // gson
+    implementation(libs.gson)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
