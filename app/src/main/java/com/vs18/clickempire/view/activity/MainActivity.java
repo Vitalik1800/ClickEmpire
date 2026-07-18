@@ -13,6 +13,7 @@ import com.vs18.clickempire.controller.MainController;
 import com.vs18.clickempire.controller.ShopController;
 import com.vs18.clickempire.controller.StatisticsController;
 import com.vs18.clickempire.databinding.ActivityMainBinding;
+import com.vs18.clickempire.manager.GameManager;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
 import com.vs18.clickempire.util.Constants;
@@ -65,15 +66,14 @@ public class MainActivity extends AppCompatActivity {
         setupBottomNavigation();
 
         updateUi();
-        startPassiveIncome();
     }
 
     /**
      * Initializes game models.
      */
     private void initializeModels() {
-        player = new Player();
-        statistics = new Statistics();
+        player = GameManager.getPlayer();
+        statistics = GameManager.getStatistics();
 
         player.setIncome(10);
         player.setClickPower(5);
@@ -155,8 +155,8 @@ public class MainActivity extends AppCompatActivity {
                 .setDuration(Constants.CLICK_ANIMATION_DURATION)
                 .withEndAction(() ->
                         binding.buttonCoin.animate()
-                                .scaleX(1.0f)
-                                .scaleY(1.0f)
+                                .scaleX(Constants.DEFAULT_ANIMATION_SCALE)
+                                .scaleY(Constants.DEFAULT_ANIMATION_SCALE)
                                 .setDuration(Constants.CLICK_ANIMATION_DURATION)
                 );
     }
@@ -172,25 +172,45 @@ public class MainActivity extends AppCompatActivity {
 
             if (id == R.id.navigation_shop) {
 
-                startActivity(new Intent(this, ShopActivity.class));
+                Intent intent = new Intent(this, ShopActivity.class);
+
+                startActivity(intent);
+
                 return true;
             }
 
             if (id == R.id.navigation_statistics) {
 
-                startActivity(new Intent(this, StatisticsActivity.class));
+                Intent intent = new Intent(this, StatisticsActivity.class);
+
+                startActivity(intent);
+
                 return true;
             }
 
             if (id == R.id.navigation_settings) {
 
-                startActivity(new Intent(this, SettingsActivity.class));
+                Intent intent = new Intent(this, SettingsActivity.class);
+
+                startActivity(intent);
+
                 return true;
             }
 
             return false;
         });
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startPassiveIncome();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacks(passiveIncomeRunnable);
     }
 
     @Override

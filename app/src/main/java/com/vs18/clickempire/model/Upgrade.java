@@ -76,7 +76,7 @@ public class Upgrade {
      * Increases upgrade price.
      */
     public void increasePrice() {
-        price = Math.round(price * Constants.PRICE_MULTIPLIER);
+        price = (long) Math.ceil(price * Constants.PRICE_MULTIPLIER);
     }
 
     // Getters

@@ -41,6 +41,21 @@ public final class Constants {
     public static final long CLICK_ANIMATION_DURATION = 70L;
 
     /**
+     * Enabled button alpha.
+     */
+    public static final float BUTTON_ENABLED_ALPHA = 1.0f;
+
+    /**
+     * Disabled button alpha.
+     */
+    public static final float BUTTON_DISABLED_ALPHA = 0.5f;
+
+    /**
+     * Default animation scale.
+     */
+    public static final float DEFAULT_ANIMATION_SCALE = 1.0f;
+
+    /**
      * Android Logs
      */
     public static final String TAG = "ClickEmpire";
