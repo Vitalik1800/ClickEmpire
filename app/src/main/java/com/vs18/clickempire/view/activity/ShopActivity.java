@@ -7,15 +7,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.vs18.clickempire.R;
+import com.vs18.clickempire.controller.AchievementController;
 import com.vs18.clickempire.controller.ShopController;
 import com.vs18.clickempire.controller.StatisticsController;
 import com.vs18.clickempire.databinding.ActivityShopBinding;
 import com.vs18.clickempire.manager.GameManager;
+import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
 import com.vs18.clickempire.model.Upgrade;
 import com.vs18.clickempire.repository.UpgradeRepository;
 import com.vs18.clickempire.util.NumberFormatter;
+import com.vs18.clickempire.util.UiUtils;
 import com.vs18.clickempire.view.adapter.UpgradeAdapter;
 
 import java.util.List;
@@ -29,6 +32,7 @@ public class ShopActivity extends AppCompatActivity {
 
     private StatisticsController statisticsController;
     private ShopController shopController;
+    private AchievementController achievementController;
 
     private List<Upgrade> upgrades;
 
@@ -61,8 +65,16 @@ public class ShopActivity extends AppCompatActivity {
      * Initializes controllers.
      */
     private void initializeControllers() {
+
+        achievementController = new AchievementController(
+                GameManager.getAchievements(),
+                player,
+                statistics
+        );
+
         statisticsController = new StatisticsController(statistics);
-        shopController = new ShopController(player, statisticsController);
+
+        shopController = new ShopController(player, statisticsController, achievementController);
     }
 
     /**
@@ -106,19 +118,9 @@ public class ShopActivity extends AppCompatActivity {
      */
     private void buyUpgrade(Upgrade upgrade) {
 
-        boolean success = shopController.buyUpgrade(upgrade);
+        GameActionResult result = shopController.buyUpgrade(upgrade);
 
-        if (success) {
-
-            updateUi();
-
-            Toast.makeText(
-                    this,
-                    R.string.purchase_success,
-                    Toast.LENGTH_SHORT
-            ).show();
-
-        } else {
+        if (!result.isSuccess()) {
 
             Toast.makeText(
                     this,
@@ -126,7 +128,19 @@ public class ShopActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT
             ).show();
 
+            return;
+
         }
+
+        updateUi();
+
+        Toast.makeText(
+                this,
+                R.string.purchase_success,
+                Toast.LENGTH_SHORT
+        ).show();
+
+        UiUtils.showAchievement(this, result);
 
     }
 

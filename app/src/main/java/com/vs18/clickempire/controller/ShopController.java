@@ -2,6 +2,8 @@ package com.vs18.clickempire.controller;
 
 import androidx.annotation.NonNull;
 
+import com.vs18.clickempire.model.Achievement;
+import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Upgrade;
 
@@ -12,6 +14,7 @@ public class ShopController {
 
     private final Player player;
     private final StatisticsController statisticsController;
+    private final AchievementController achievementController;
 
     /**
      * Creates a new shop controller.
@@ -19,9 +22,14 @@ public class ShopController {
      * @param player player model
      * @param statisticsController statistics model
      */
-    public ShopController(Player player, StatisticsController statisticsController) {
+    public ShopController(
+            Player player,
+            StatisticsController statisticsController,
+            AchievementController achievementController
+    ) {
         this.player = player;
         this.statisticsController = statisticsController;
+        this.achievementController = achievementController;
     }
 
     /**
@@ -30,14 +38,14 @@ public class ShopController {
      * @param upgrade upgrade to buy
      * @return true if purchase was successful
      */
-    public boolean buyUpgrade(@NonNull Upgrade upgrade) {
+    public GameActionResult buyUpgrade(@NonNull Upgrade upgrade) {
 
         if (!canBuyUpgrade(upgrade)) {
-            return false;
+            return new GameActionResult(false, null);
         }
 
         if (!player.spendCoins(upgrade.getPrice())) {
-            return false;
+            return new GameActionResult(false, null);
         }
 
         upgrade.buy();
@@ -46,7 +54,10 @@ public class ShopController {
 
         statisticsController.addPurchase();
 
-        return true;
+        Achievement achievement =
+                achievementController.checkAchievements();
+
+        return new GameActionResult(true, achievement);
     }
 
     /**

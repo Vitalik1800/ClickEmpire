@@ -13,17 +13,22 @@ public class Achievement {
     /**
      * Achievement title.
      */
-    private int titleResId;
+    private final int titleResId;
 
     /**
      * Achievement description.
      */
-    private int descriptionResId;
+    private final int descriptionResId;
 
     /**
      * Drawable resource id.
      */
-    private int icon;
+    private final int icon;
+
+    /**
+     * Condition value required to unlock the achievement.
+     */
+    private final long condition;
 
     /**
      * Achievement unlocked state.
@@ -37,12 +42,20 @@ public class Achievement {
      * @param titleResId achievement title
      * @param descriptionResId achievement description
      * @param icon drawable resource id
+     * @param condition required condition value
      */
-    public Achievement(int id, int titleResId, int descriptionResId, int icon) {
+    public Achievement(
+            int id,
+            int titleResId,
+            int descriptionResId,
+            int icon,
+            long condition
+    ) {
         this.id = id;
         this.titleResId = titleResId;
         this.descriptionResId = descriptionResId;
         this.icon = icon;
+        this.condition = condition;
         this.unlocked = false;
     }
 
@@ -89,20 +102,11 @@ public class Achievement {
         return icon;
     }
 
+    public long getCondition() {
+        return condition;
+    }
+
     // Setters
-
-
-    public void setTitleResId(int titleResId) {
-        this.titleResId = titleResId;
-    }
-
-    public void setDescriptionResId(int descriptionResId) {
-        this.descriptionResId = descriptionResId;
-    }
-
-    public void setIcon(int icon) {
-        this.icon = icon;
-    }
 
     public void setUnlocked(boolean unlocked) {
         this.unlocked = unlocked;

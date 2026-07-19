@@ -1,5 +1,7 @@
 package com.vs18.clickempire.controller;
 
+import androidx.annotation.NonNull;
+
 import com.vs18.clickempire.model.Achievement;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
@@ -34,7 +36,7 @@ public class AchievementController {
     /**
      * Checks all achievement conditions.
      */
-    public void checkAchievements() {
+    public Achievement checkAchievements() {
 
         for (Achievement achievement : achievements) {
 
@@ -42,135 +44,82 @@ public class AchievementController {
                 continue;
             }
 
+            long progress = 0;
+
             switch (achievement.getId()) {
 
-                // First Click
                 case 1:
-                    if (statistics.getClicks() >= 1) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 100 Clicks
                 case 2:
-                    if (statistics.getClicks() >= 100) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 1000 Clicks
                 case 3:
-                    if (statistics.getClicks() >= 1000) {
-                        achievement.unlock();
-                    }
+                    progress = statistics.getClicks();
                     break;
 
-                // First Upgrade
                 case 4:
-                    if (statistics.getPurchases() >= 1) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 10 Upgrades
                 case 5:
-                    if (statistics.getPurchases() >= 10) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 50 Upgrades
                 case 6:
-                    if (statistics.getPurchases() >= 50) {
-                        achievement.unlock();
-                    }
+                    progress = statistics.getPurchases();
                     break;
 
-                // 1 000 Coins
                 case 7:
-                    if (player.getCoins() >= 1_000) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 10 000 Coins
                 case 8:
-                    if (player.getCoins() >= 10_000) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // 100 000 Coins
                 case 9:
-                    if (player.getCoins() >= 100_000) {
-                        achievement.unlock();
-                    }
+                    progress = player.getCoins();
                     break;
 
-                // Passive income 10/sec
                 case 10:
-                    if (player.getIncome() >= 10) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // Passive income 100/sec
                 case 11:
-                    if (player.getIncome() >= 100) {
-                        achievement.unlock();
-                    }
+                    progress = player.getIncome();
                     break;
 
-                // Level 5
                 case 12:
-                    if (player.getLevel() >= 5) {
-                        achievement.unlock();
-                    }
-                    break;
-
-                // Level 10
                 case 13:
-                    if (player.getLevel() >= 10) {
-                        achievement.unlock();
-                    }
+                    progress = player.getLevel();
                     break;
 
-                // 1 Hour Play Time
                 case 14:
-                    if (statistics.getPlayTime() >= 3600) {
-                        achievement.unlock();
-                    }
+                    progress = statistics.getPlayTime();
                     break;
 
-                // Millionaire
                 case 15:
-                    if (statistics.getEarnedCoins() >= 1_000_000) {
-                        achievement.unlock();
-                    }
+                    progress = statistics.getEarnedCoins();
                     break;
 
                 default:
                     break;
             }
+
+            if (progress >= achievement.getCondition()) {
+                unlockAchievement(achievement);
+                return achievement;
+            }
         }
+
+        return null;
     }
 
     /**
-     * Unlocks achievement manually.
+     * Unlocks an achievement.
+     *
+     * @param achievement achievement to unlock
+     */
+    public void unlockAchievement(@NonNull Achievement achievement) {
+        achievement.unlock();
+    }
+
+    /**
+     * Unlocks achievement by id.
      *
      * @param id achievement id
      */
-    public void unlockAchievement(int id) {
+    public void unlockAchievementById(int id) {
 
         for (Achievement achievement : achievements) {
 
             if (achievement.getId() == id) {
-                achievement.unlock();
+                unlockAchievement(achievement);
                 return;
             }
-
         }
-
     }
 
     /**
@@ -199,7 +148,6 @@ public class AchievementController {
         for (Achievement achievement : achievements) {
             achievement.lock();
         }
-
     }
 
     /**

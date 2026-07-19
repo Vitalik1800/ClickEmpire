@@ -9,15 +9,17 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.vs18.clickempire.R;
+import com.vs18.clickempire.controller.AchievementController;
 import com.vs18.clickempire.controller.MainController;
-import com.vs18.clickempire.controller.ShopController;
 import com.vs18.clickempire.controller.StatisticsController;
 import com.vs18.clickempire.databinding.ActivityMainBinding;
 import com.vs18.clickempire.manager.GameManager;
+import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
 import com.vs18.clickempire.util.Constants;
 import com.vs18.clickempire.util.NumberFormatter;
+import com.vs18.clickempire.util.UiUtils;
 
 /**
  * Main game screen.
@@ -28,8 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private Statistics statistics;
 
     private MainController mainController;
-    private ShopController shopController;
     private StatisticsController statisticsController;
+    private AchievementController achievementController;
 
     private ActivityMainBinding binding;
 
@@ -41,9 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
             Log.d(Constants.TAG, "Passive income tick");
 
-            mainController.addPassiveIncome();
+            GameActionResult result = mainController.addPassiveIncome();
 
             updateUi();
+
+            UiUtils.showAchievement(MainActivity.this, result);
 
             handler.postDelayed(this, Constants.PASSIVE_INCOME_INTERVAL);
         }
@@ -85,8 +89,16 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeControllers() {
         statisticsController = new StatisticsController(statistics);
-        mainController = new MainController(player, statisticsController);
-        shopController = new ShopController(player, statisticsController);
+
+        achievementController = new AchievementController(
+                GameManager.getAchievements(),
+                player,
+                statistics
+        );
+
+        mainController = new MainController(player, statisticsController, achievementController);
+
+
     }
 
     /**
@@ -105,9 +117,11 @@ public class MainActivity extends AppCompatActivity {
 
             playClickAnimation();
 
-            mainController.click();
+            GameActionResult result = mainController.click();
 
             updateUi();
+
+            UiUtils.showAchievement(this, result);
         });
 
     }
