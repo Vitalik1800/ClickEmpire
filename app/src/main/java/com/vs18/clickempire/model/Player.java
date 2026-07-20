@@ -111,6 +111,7 @@ public class Player {
 
         if (level < Constants.MAX_LEVEL) {
             setLevel(level + 1);
+            setClickPower(level);
         }
 
     }

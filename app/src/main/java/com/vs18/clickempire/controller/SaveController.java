@@ -1,7 +1,7 @@
 package com.vs18.clickempire.controller;
 
 import com.vs18.clickempire.model.SaveData;
-import com.vs18.clickempire.storage.SaveManager;
+import com.vs18.clickempire.manager.SaveManager;
 
 /**
  * Controls game save and load operations.

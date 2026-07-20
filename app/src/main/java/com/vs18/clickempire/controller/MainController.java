@@ -41,6 +41,11 @@ public class MainController {
         long clickPower = player.getClickPower();
 
         player.addCoins(clickPower);
+        player.addExperience(clickPower);
+
+        Log.d(Constants.TAG,
+                "XP=" + player.getExperience()
+                        + " Level=" + player.getLevel());
 
         statisticsController.addClick();
         statisticsController.addEarnedCoins(clickPower);
@@ -75,7 +80,7 @@ public class MainController {
                 "Coins = " + player.getCoins());
 
         statisticsController.addEarnedCoins(income);
-        statisticsController.updateHighestBalance(player.getCoins());
+        updateHighestBalance();
 
         achievementController.checkAchievements();
 

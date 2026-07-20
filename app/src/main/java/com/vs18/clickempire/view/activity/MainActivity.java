@@ -14,6 +14,7 @@ import com.vs18.clickempire.controller.MainController;
 import com.vs18.clickempire.controller.StatisticsController;
 import com.vs18.clickempire.databinding.ActivityMainBinding;
 import com.vs18.clickempire.manager.GameManager;
+import com.vs18.clickempire.manager.SaveManager;
 import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
@@ -81,9 +82,8 @@ public class MainActivity extends AppCompatActivity {
         player = GameManager.getPlayer();
         statistics = GameManager.getStatistics();
 
-        player.setIncome(10);
-        player.setClickPower(5);
-        player.setLevel(7);
+        Log.d(Constants.TAG,
+                "Player hash = " + System.identityHashCode(player));
     }
 
     /**
@@ -99,8 +99,6 @@ public class MainActivity extends AppCompatActivity {
         );
 
         mainController = new MainController(player, statisticsController, achievementController);
-
-
     }
 
     /**
@@ -236,6 +234,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(passiveIncomeRunnable);
+
+        GameManager.saveGame();
     }
 
     @Override

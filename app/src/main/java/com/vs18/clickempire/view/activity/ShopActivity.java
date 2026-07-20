@@ -58,7 +58,7 @@ public class ShopActivity extends AppCompatActivity {
     private void initializeModels() {
         player = GameManager.getPlayer();
         statistics = GameManager.getStatistics();
-        upgrades = UpgradeRepository.getUpgrades();
+        upgrades = GameManager.getUpgrades();
     }
 
     /**
@@ -132,6 +132,8 @@ public class ShopActivity extends AppCompatActivity {
 
         }
 
+        GameManager.saveGame();
+
         updateUi();
 
         Toast.makeText(
@@ -142,6 +144,13 @@ public class ShopActivity extends AppCompatActivity {
 
         UiUtils.showAchievement(this, result);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        GameManager.saveGame();
     }
 
     @Override

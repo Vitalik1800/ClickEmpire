@@ -14,55 +14,47 @@ public class SaveData {
     private Player player;
 
     /**
-     * Game statistics.
+     * Player statistics.
      */
     private Statistics statistics;
 
     /**
-     * User settings.
-     */
-    private Settings settings;
-
-    /**
-     * All upgrades.
+     * Purchased upgrades.
      */
     private List<Upgrade> upgrades;
 
     /**
-     * All achievements.
+     * Unlocked achievements.
      */
     private List<Achievement> achievements;
 
     /**
-     * Last save time in milliseconds.
+     * Last save timestamp.
      */
     private long lastSaveTime;
 
     /**
-     * Creates a new save with default values.
+     * Creates empty save data.
      */
     public SaveData() {
         this.player = new Player();
         this.statistics = new Statistics();
-        this.settings = new Settings();
         this.upgrades = new ArrayList<>();
         this.achievements = new ArrayList<>();
         this.lastSaveTime = System.currentTimeMillis();
     }
 
     /**
-     * Creates a save with custom values.
+     * Creates save data.
      */
     public SaveData(Player player,
                     Statistics statistics,
-                    Settings settings,
                     List<Upgrade> upgrades,
                     List<Achievement> achievements,
                     long lastSaveTime) {
 
         this.player = player;
         this.statistics = statistics;
-        this.settings = settings;
         this.upgrades = upgrades;
         this.achievements = achievements;
         this.lastSaveTime = lastSaveTime;
@@ -77,10 +69,6 @@ public class SaveData {
 
     public Statistics getStatistics() {
         return statistics;
-    }
-
-    public Settings getSettings() {
-        return settings;
     }
 
     public List<Upgrade> getUpgrades() {
@@ -104,10 +92,6 @@ public class SaveData {
 
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
-    }
-
-    public void setSettings(Settings settings) {
-        this.settings = settings;
     }
 
     public void setUpgrades(List<Upgrade> upgrades) {

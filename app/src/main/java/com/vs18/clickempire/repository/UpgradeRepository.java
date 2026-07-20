@@ -1,5 +1,7 @@
 package com.vs18.clickempire.repository;
 
+import androidx.annotation.NonNull;
+
 import com.vs18.clickempire.R;
 import com.vs18.clickempire.model.Upgrade;
 
@@ -20,6 +22,7 @@ public final class UpgradeRepository {
      *
      * @return list of upgrades
      */
+    @NonNull
     public static List<Upgrade> getUpgrades() {
 
         List<Upgrade> upgrades = new ArrayList<>();
