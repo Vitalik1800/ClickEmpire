@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    app:cardBackgroundColor="@color/surface"
+    app:cardCornerRadius="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/play_time"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textPlayTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            tools:text="00:00:00"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/clicks"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textClicks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            tools:text="12345"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/purchases"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textPurchases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            tools:text="27"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/earned_coins"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textEarnedCoins"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            tools:text="123456"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/highest_balance"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textHighestBalance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            android:layout_marginBottom="16dp"
+            tools:text="54321"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/income_per_second"
+            android:textStyle="bold"
+            android:textColor="@color/text_secondary"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textIncomePerSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/text_primary"
+            tools:text="150"/>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

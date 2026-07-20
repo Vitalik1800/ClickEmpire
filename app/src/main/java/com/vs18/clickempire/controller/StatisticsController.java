@@ -67,4 +67,50 @@ public class StatisticsController {
     public Statistics getStatistics() {
         return statistics;
     }
+
+    /**
+     * Returns total clicks.
+     *
+     * @return click count
+     */
+    public long getClicks() {
+        return statistics.getClicks();
+    }
+
+    /**
+     * Returns total play time.
+     *
+     * @return play time in seconds
+     */
+    public long getPlayTime() {
+        return statistics.getPlayTime();
+    }
+
+    /**
+     * Returns earned coins.
+     *
+     * @return earned coins
+     */
+    public long getEarnedCoins() {
+        return statistics.getEarnedCoins();
+    }
+
+    /**
+     * Returns highest balance.
+     *
+     * @return highest balance
+     */
+    public long getHighestBalance() {
+        return statistics.getHighestBalance();
+    }
+
+    /**
+     * Returns purchase count.
+     *
+     * @return purchase count
+     */
+    public int getPurchases() {
+        return statistics.getPurchases();
+    }
+
 }

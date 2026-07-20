@@ -56,6 +56,16 @@ public final class Constants {
     public static final float DEFAULT_ANIMATION_SCALE = 1.0f;
 
     /**
+     * Seconds of hour
+     */
+    public static final long SECONDS_0F_HOUR = 3600;
+
+    /**
+     * Minutes of hour
+     */
+    public static final long MINUTES_OF_HOUR = 60;
+
+    /**
      * Android Logs
      */
     public static final String TAG = "ClickEmpire";

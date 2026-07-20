@@ -45,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
             GameActionResult result = mainController.addPassiveIncome();
 
+            statisticsController.addPlayTime(1);
+
             updateUi();
 
             UiUtils.showAchievement(MainActivity.this, result);
@@ -196,6 +198,15 @@ public class MainActivity extends AppCompatActivity {
             if (id == R.id.navigation_statistics) {
 
                 Intent intent = new Intent(this, StatisticsActivity.class);
+
+                startActivity(intent);
+
+                return true;
+            }
+
+            if (id == R.id.navigation_achievements) {
+
+                Intent intent = new Intent(this, AchievementActivity.class);
 
                 startActivity(intent);
 

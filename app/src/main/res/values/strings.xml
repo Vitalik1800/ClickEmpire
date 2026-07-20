@@ -95,4 +95,10 @@
     <string name="unlocked">Unlocked</string>
     <string name="locked">Locked</string>
     <string name="achievement_hidden">\?\?\?</string>
+    <string name="play_time">Play Time</string>
+    <string name="clicks">Clicks</string>
+    <string name="purchases">Purchases</string>
+    <string name="earned_coins">Earned Coins</string>
+    <string name="highest_balance">Highest Balance</string>
+    <string name="income_per_second">Income / sec</string>
 </resources>
