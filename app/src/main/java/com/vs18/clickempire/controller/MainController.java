@@ -38,6 +38,12 @@ public class MainController {
      */
     public GameActionResult click() {
 
+        Log.d(Constants.TAG,
+                "CLICK coins="
+                        + player.getCoins()
+                        + " hash="
+                        + System.identityHashCode(player));
+
         long clickPower = player.getClickPower();
 
         player.addCoins(clickPower);

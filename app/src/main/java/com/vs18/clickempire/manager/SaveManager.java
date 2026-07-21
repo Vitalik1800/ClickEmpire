@@ -1,13 +1,16 @@
 package com.vs18.clickempire.manager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.vs18.clickempire.model.SaveData;
 import com.vs18.clickempire.util.Constants;
+import com.vs18.clickempire.util.SaveValidator;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -44,6 +47,11 @@ public class SaveManager {
         try (FileOutputStream outputStream =
                     context.openFileOutput(SAVE_FILE_NAME, Context.MODE_PRIVATE)) {
 
+            Log.d(Constants.TAG,
+                    "SAVE -> coins=" + saveData.getPlayer().getCoins()
+                            + ", income=" + saveData.getPlayer().getIncome()
+                            + ", hash=" + System.identityHashCode(saveData.getPlayer()));
+
             String json = gson.toJson(saveData);
 
             Log.d(Constants.TAG, json);
@@ -52,9 +60,16 @@ public class SaveManager {
                     "Saving: coins=" + saveData.getPlayer().getCoins()
                             + ", clickPower=" + saveData.getPlayer().getClickPower()
                             + ", income=" + saveData.getPlayer().getIncome()
-                            + ", level=" + saveData.getPlayer().getLevel());
+                            + ", level=" + saveData.getPlayer().getLevel()
+                            + ", Last save time= " + saveData.getLastSaveTime());
 
             outputStream.write(json.getBytes(StandardCharsets.UTF_8));
+
+            Log.d(Constants.TAG,
+                    "SAVE caller = " + Log.getStackTraceString(new Throwable()));
+
+            Log.d(Constants.TAG,
+                    Log.getStackTraceString(new Throwable("SAVE STACK")));
 
         } catch (IOException e) {
             Log.e(Constants.TAG, "Error saving data: " + e.getMessage());
@@ -68,13 +83,38 @@ public class SaveManager {
      */
     public SaveData load() {
 
+        Log.d(Constants.TAG,
+                "Save exists = " + context.getFileStreamPath(SAVE_FILE_NAME).exists());
+
         try (FileInputStream inputStream =
-                    context.openFileInput(SAVE_FILE_NAME)) {
+                     context.openFileInput(SAVE_FILE_NAME);
+             InputStreamReader reader =
+                     new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+             java.io.BufferedReader bufferedReader =
+                     new java.io.BufferedReader(reader)) {
 
-            InputStreamReader reader =
-                    new InputStreamReader(inputStream, StandardCharsets.UTF_8);
+            StringBuilder jsonBuilder = new StringBuilder();
+            String line;
 
-            SaveData saveData = gson.fromJson(reader, SaveData.class);
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonBuilder.append(line);
+            }
+
+            String json = jsonBuilder.toString();
+
+            Log.d(Constants.TAG, "JSON = " + json);
+
+            SaveData saveData = gson.fromJson(json, SaveData.class);
+
+            if (saveData == null) {
+                Log.w(Constants.TAG, "Save file is empty.");
+                return null;
+            }
+
+            if (!SaveValidator.isValid(saveData)) {
+                Log.e(Constants.TAG, "Save file is corrupted.");
+                return null;
+            }
 
             Log.d(Constants.TAG,
                     "Loaded: coins=" + saveData.getPlayer().getCoins()
@@ -82,10 +122,13 @@ public class SaveManager {
                             + ", income=" + saveData.getPlayer().getIncome()
                             + ", level=" + saveData.getPlayer().getLevel());
 
+            Log.d(Constants.TAG,
+                    "JSON player = " + gson.toJson(saveData.getPlayer()));
+
             return saveData;
 
-        } catch (IOException e) {
-            Log.e(Constants.TAG, "Error loading data: " + e.getMessage());
+        } catch (IOException | JsonSyntaxException e) {
+            Log.e(Constants.TAG, "Error loading data", e);
             return null;
         }
 

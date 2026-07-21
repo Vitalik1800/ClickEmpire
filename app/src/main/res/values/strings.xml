@@ -101,4 +101,8 @@
     <string name="earned_coins">Earned Coins</string>
     <string name="highest_balance">Highest Balance</string>
     <string name="income_per_second">Income / sec</string>
+    <string name="welcome_back">Welcome back!</string>
+    <string name="offline_time">Offline time</string>
+    <string name="earned">Earned</string>
+    <string name="coins">" coins"</string>
 </resources>

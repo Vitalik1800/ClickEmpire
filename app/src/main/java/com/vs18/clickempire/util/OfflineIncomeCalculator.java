@@ -9,9 +9,9 @@ public final class OfflineIncomeCalculator {
     /**
      * Calculates offline income.
      *
-     * @param income coins per second
+     * @param income coins earned per second
      * @param offlineTime offline time in seconds
-     * @return earned coins
+     * @return earned offline coins
      */
     public static long calculate(long income, long offlineTime) {
 

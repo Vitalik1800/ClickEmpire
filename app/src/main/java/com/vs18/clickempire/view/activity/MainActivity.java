@@ -56,9 +56,23 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    private final Runnable autoSaveRunnable = new Runnable() {
+        @Override
+        public void run() {
+            GameManager.saveGame();
+            handler.postDelayed(this, Constants.SAVE_INTERVAL);
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Log.d(Constants.TAG,
+                "Main onCreate player = "
+                        + GameManager.getPlayer().getCoins()
+                        + " hash="
+                        + System.identityHashCode(GameManager.getPlayer()));
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -68,11 +82,24 @@ public class MainActivity extends AppCompatActivity {
         initializeModels();
         initializeControllers();
 
+        long offlineSeconds = GameManager.getOfflineSeconds();
+        long offlineCoins = GameManager.applyOfflineIncome();
+
         initializeViews();
         setupListeners();
         setupBottomNavigation();
 
         updateUi();
+
+        Log.d(Constants.TAG,
+                "Dialog: seconds=" + offlineSeconds
+                        + ", coins=" + offlineCoins);
+
+        UiUtils.showOfflineIncome(
+                MainActivity.this,
+                offlineSeconds,
+                offlineCoins
+        );
     }
 
     /**
@@ -80,6 +107,13 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeModels() {
         player = GameManager.getPlayer();
+
+        Log.d(Constants.TAG,
+                "initializeModels player = "
+                        + player.getCoins()
+                        + " hash="
+                        + System.identityHashCode(player));
+
         statistics = GameManager.getStatistics();
 
         Log.d(Constants.TAG,
@@ -130,6 +164,12 @@ public class MainActivity extends AppCompatActivity {
      * Updates all game information.
      */
     private void updateUi() {
+
+        Log.d(Constants.TAG,
+                "updateUi coins="
+                        + player.getCoins()
+                        + " hash="
+                        + System.identityHashCode(player));
 
         binding.textBalance.setText(
                 NumberFormatter.format(player.getCoins())
@@ -227,6 +267,17 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        Log.d(Constants.TAG,
+                "onResume coins="
+                        + player.getCoins()
+                        + " hash="
+                        + System.identityHashCode(player));
+
+        handler.removeCallbacks(autoSaveRunnable);
+        handler.postDelayed(autoSaveRunnable, Constants.SAVE_INTERVAL);
+
+        handler.removeCallbacks(passiveIncomeRunnable);
         startPassiveIncome();
     }
 
@@ -234,6 +285,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         handler.removeCallbacks(passiveIncomeRunnable);
+        handler.removeCallbacks(autoSaveRunnable);
 
         GameManager.saveGame();
     }
@@ -243,5 +295,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
 
         handler.removeCallbacks(passiveIncomeRunnable);
+        handler.removeCallbacks(autoSaveRunnable);
     }
 }

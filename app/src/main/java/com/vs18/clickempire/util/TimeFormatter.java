@@ -23,8 +23,8 @@ public final class TimeFormatter {
     public static String format(long seconds) {
 
         long hours = seconds / Constants.SECONDS_0F_HOUR;
-        long minutes = (seconds % Constants.SECONDS_0F_HOUR) / Constants.MINUTES_OF_HOUR;
-        long secs = seconds % Constants.MINUTES_OF_HOUR;
+        long minutes = (seconds % Constants.SECONDS_0F_HOUR) / Constants.SECONDS_OF_MINUTE;
+        long secs = seconds % Constants.SECONDS_OF_MINUTE;
 
         return String.format(
                 Locale.getDefault(),

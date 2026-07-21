@@ -13,6 +13,7 @@ import com.vs18.clickempire.model.Upgrade;
 import com.vs18.clickempire.repository.AchievementRepository;
 import com.vs18.clickempire.repository.UpgradeRepository;
 import com.vs18.clickempire.util.Constants;
+import com.vs18.clickempire.util.OfflineIncomeCalculator;
 
 import org.jetbrains.annotations.Contract;
 
@@ -33,6 +34,8 @@ public final class GameManager {
 
     private static SaveManager saveManager;
 
+    private static long offlineSeconds;
+
     private GameManager() {
 
     }
@@ -43,7 +46,22 @@ public final class GameManager {
     public static void loadGame(@NonNull SaveData saveData) {
 
         if (saveData.getPlayer() != null) {
+
+            Log.d(Constants.TAG,
+                    "LOAD BEFORE -> hash=" + System.identityHashCode(player)
+                            + ", coins=" + player.getCoins());
+
+            Log.d(Constants.TAG,
+                    "LOAD FROM SAVE -> hash="
+                            + System.identityHashCode(saveData.getPlayer())
+                            + ", coins=" + saveData.getPlayer().getCoins());
+
             player = saveData.getPlayer();
+
+            Log.d(Constants.TAG,
+                    "LOAD AFTER -> hash="
+                            + System.identityHashCode(player)
+                            + ", coins=" + player.getCoins());
 
             Log.d(Constants.TAG,
                     "Player hash = " + System.identityHashCode(player));
@@ -71,10 +89,35 @@ public final class GameManager {
         SaveData saveData = saveManager.load();
 
         if (saveData == null) {
+            Log.w(Constants.TAG, "Using default game state.");
             return false;
         }
 
         loadGame(saveData);
+
+        long currentTime = System.currentTimeMillis();
+
+        offlineSeconds =
+                (currentTime - saveData.getLastSaveTime()) / Constants.PASSIVE_INCOME_INTERVAL;
+
+        offlineSeconds = Math.min(
+                offlineSeconds,
+                Constants.OFFLINE_LIMIT
+        );
+
+        Log.d(
+                Constants.TAG,
+                "Offline time = " + offlineSeconds + " sec"
+        );
+
+        Log.d(Constants.TAG,
+                "lastSaveTime = " + saveData.getLastSaveTime());
+
+        Log.d(Constants.TAG,
+                "currentTime = " + currentTime);
+
+        Log.d(Constants.TAG,
+                "offlineSeconds = " + offlineSeconds);
 
         return true;
     }
@@ -92,7 +135,20 @@ public final class GameManager {
     public static void saveGame() {
 
         if (saveManager != null) {
+
+            Log.d(Constants.TAG,
+                    "SAVE GAME caller");
+            new Throwable().printStackTrace();
+
             saveManager.save(createSaveData());
+
+            Log.d(Constants.TAG,
+                    "SAVE GAME player hash="
+                            + System.identityHashCode(player)
+                            + " coins="
+                            + player.getCoins());
+
+            new Throwable("SAVE GAME").printStackTrace();
         }
     }
 
@@ -115,6 +171,41 @@ public final class GameManager {
     }
 
     /**
+     * Applies offline income.
+     *
+     * @return earned offline coins
+     */
+    public static long applyOfflineIncome() {
+
+        Log.d(Constants.TAG,
+                "Income = " + player.getIncome());
+
+        Log.d(Constants.TAG,
+                "Offline seconds = " + offlineSeconds);
+
+        if (offlineSeconds <= 0) {
+            return 0;
+        }
+
+        long offlineCoins = OfflineIncomeCalculator.calculate(
+                player.getIncome(),
+                offlineSeconds
+        );
+
+        if (offlineCoins > 0) {
+            player.addCoins(offlineCoins);
+            statistics.addEarnedCoins(offlineCoins);
+        }
+
+        Log.d(Constants.TAG,
+                "Offline coins = " + offlineCoins);
+
+        offlineSeconds = 0;
+
+        return offlineCoins;
+    }
+
+    /**
      * Returns current player.
      */
     public static Player getPlayer() {
@@ -126,6 +217,13 @@ public final class GameManager {
      */
     public static Statistics getStatistics() {
         return statistics;
+    }
+
+    /**
+     * Returns offline seconds.
+     */
+    public static long getOfflineSeconds() {
+        return offlineSeconds;
     }
 
     /**

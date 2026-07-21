@@ -58,12 +58,12 @@ public final class Constants {
     /**
      * Seconds of hour
      */
-    public static final long SECONDS_0F_HOUR = 3600;
+    public static final long SECONDS_0F_HOUR = 3600L;
 
     /**
      * Minutes of hour
      */
-    public static final long MINUTES_OF_HOUR = 60;
+    public static final long SECONDS_OF_MINUTE = 60L;
 
     /**
      * Android Logs
