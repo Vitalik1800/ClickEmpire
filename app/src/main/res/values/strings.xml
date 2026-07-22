@@ -105,4 +105,18 @@
     <string name="offline_time">Offline time</string>
     <string name="earned">Earned</string>
     <string name="coins">" coins"</string>
+    <string name="sound">Sound</string>
+    <string name="vibration">Vibration</string>
+    <string name="reset_progress">Reset Progress</string>
+    <string name="reset_progress_title">Reset Progress</string>
+    <string name="reset_progress_message">Are you sure you want to delete all game progress?</string>
+    <string name="cancel">Cancel</string>
+    <string name="reset">Reset</string>
+    <string name="version">Version</string>
+    <string name="version_format">Version %1$s</string>
+    <string name="balance_format">Coins: %1$s</string>
+    <string name="income_format">Income: %1$s/sec</string>
+    <string name="click_power_format">Click Power: %1$s</string>
+    <string name="level_format">Level: %1$d</string>
+    <string name="upgrade_purchased">Purchased: %1$s</string>
 </resources>

@@ -101,11 +101,17 @@ public class ShopActivity extends AppCompatActivity {
     private void updateUi() {
 
         binding.textBalance.setText(
-                NumberFormatter.format(player.getCoins())
+                getString(
+                        R.string.balance_format,
+                        NumberFormatter.format(player.getCoins())
+                )
         );
 
         binding.textIncome.setText(
-                NumberFormatter.format(player.getIncome())
+                getString(
+                        R.string.income_format,
+                        NumberFormatter.format(player.getIncome())
+                )
         );
 
         adapter.notifyDataSetChanged();
@@ -120,36 +126,21 @@ public class ShopActivity extends AppCompatActivity {
 
         GameActionResult result = shopController.buyUpgrade(upgrade);
 
+        UiUtils.showUpgrade(this, upgrade, result.isSuccess());
+
         if (!result.isSuccess()) {
-
-            Toast.makeText(
-                    this,
-                    R.string.not_enough_coins,
-                    Toast.LENGTH_SHORT
-            ).show();
-
             return;
-
         }
 
         GameManager.saveGame();
-
         updateUi();
 
-        Toast.makeText(
-                this,
-                R.string.purchase_success,
-                Toast.LENGTH_SHORT
-        ).show();
-
         UiUtils.showAchievement(this, result);
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-
         GameManager.saveGame();
     }
 

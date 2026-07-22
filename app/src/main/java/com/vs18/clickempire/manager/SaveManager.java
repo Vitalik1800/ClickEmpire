@@ -42,7 +42,7 @@ public class SaveManager {
      *
      * @param saveData save data
      */
-    public void save(SaveData saveData) {
+    public void save(@NonNull SaveData saveData) {
 
         try (FileOutputStream outputStream =
                     context.openFileOutput(SAVE_FILE_NAME, Context.MODE_PRIVATE)) {
@@ -137,7 +137,7 @@ public class SaveManager {
     /**
      * Clears all saved data.
      */
-    public void reset() {
+    public void deleteSave() {
         context.deleteFile(SAVE_FILE_NAME);
     }
 }

@@ -38,31 +38,19 @@ public class MainController {
      */
     public GameActionResult click() {
 
-        Log.d(Constants.TAG,
-                "CLICK coins="
-                        + player.getCoins()
-                        + " hash="
-                        + System.identityHashCode(player));
-
         long clickPower = player.getClickPower();
 
         player.addCoins(clickPower);
-        player.addExperience(clickPower);
-
-        Log.d(Constants.TAG,
-                "XP=" + player.getExperience()
-                        + " Level=" + player.getLevel());
+        boolean levelUp = player.addExperience(1);
 
         statisticsController.addClick();
         statisticsController.addEarnedCoins(clickPower);
         statisticsController.updateHighestBalance(player.getCoins());
 
-        achievementController.checkAchievements();
-
         Achievement achievement =
                 achievementController.checkAchievements();
 
-        return new GameActionResult(true, achievement);
+        return new GameActionResult(true, levelUp, achievement);
     }
 
     /**
@@ -77,7 +65,7 @@ public class MainController {
                 "Income = " + income);
 
         if (income <= 0) {
-            return new GameActionResult(false, null);
+            return new GameActionResult(false, false,null);
         }
 
         player.addCoins(income);
@@ -88,12 +76,10 @@ public class MainController {
         statisticsController.addEarnedCoins(income);
         updateHighestBalance();
 
-        achievementController.checkAchievements();
-
         Achievement achievement =
                 achievementController.checkAchievements();
 
-        return new GameActionResult(true, achievement);
+        return new GameActionResult(true, false, achievement);
     }
 
     /**
@@ -105,7 +91,7 @@ public class MainController {
         Achievement achievement =
                 achievementController.checkAchievements();
 
-        return new GameActionResult(true, achievement);
+        return new GameActionResult(true, true, achievement);
     }
 
     /**

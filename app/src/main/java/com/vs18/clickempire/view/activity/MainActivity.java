@@ -151,11 +151,26 @@ public class MainActivity extends AppCompatActivity {
 
             playClickAnimation();
 
+            GameManager.getSoundManager().play(
+                    GameManager.getSoundManager().getClickSound()
+            );
+
+            GameManager.getVibrationManager().vibrate();
+
             GameActionResult result = mainController.click();
 
             updateUi();
 
             UiUtils.showAchievement(this, result);
+
+            if (result.isLevelUp()) {
+                handler.postDelayed(() ->
+                                GameManager.getSoundManager().play(
+                                        GameManager.getSoundManager().getLevelUpSound()
+                                ),
+                        600
+                );
+            }
         });
 
     }
@@ -165,26 +180,32 @@ public class MainActivity extends AppCompatActivity {
      */
     private void updateUi() {
 
-        Log.d(Constants.TAG,
-                "updateUi coins="
-                        + player.getCoins()
-                        + " hash="
-                        + System.identityHashCode(player));
-
         binding.textBalance.setText(
-                NumberFormatter.format(player.getCoins())
+                getString(
+                        R.string.balance_format,
+                        NumberFormatter.format(player.getCoins())
+                )
         );
 
         binding.textIncome.setText(
-                NumberFormatter.format(player.getIncome())
+                getString(
+                        R.string.income_format,
+                        NumberFormatter.format(player.getIncome())
+                )
         );
 
         binding.textClickPower.setText(
-                NumberFormatter.format(player.getClickPower())
+                getString(
+                        R.string.click_power_format,
+                        NumberFormatter.format(player.getClickPower())
+                )
         );
 
         binding.textLevel.setText(
-                String.valueOf(player.getLevel())
+                getString(
+                        R.string.level_format,
+                        player.getLevel()
+                )
         );
     }
 

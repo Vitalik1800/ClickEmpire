@@ -99,7 +99,7 @@ public class Player {
     }
 
     /**
-     * Checks whether the player can buy an item.
+     * Checks whether the player can click.wav an item.
      *
      * @param price item price
      * @return true if enough coins
@@ -152,29 +152,34 @@ public class Player {
      *
      * @param value experience to add
      */
-    public void addExperience(long value) {
+    public boolean addExperience(long value) {
 
         if (value <= 0) {
-            return;
+            return false;
         }
 
         experience += value;
 
-        checkLevelUp();
+        return checkLevelUp();
     }
 
     /**
      * Checks whether the player can level up.
      */
-    public void checkLevelUp() {
+    public boolean checkLevelUp() {
+
+        boolean leveledUp = false;
 
         while (experience >= getRequiredExperience()
                 && level < Constants.MAX_LEVEL) {
 
             experience -= getRequiredExperience();
-
             levelUp();
+
+            leveledUp = true;
         }
+
+        return leveledUp;
     }
 
     /**

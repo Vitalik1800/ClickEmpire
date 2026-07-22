@@ -22,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        GameManager.initializeSaveManager(this);
+        GameManager.initialize(this);
         GameManager.loadGame();
 
         Log.d(Constants.TAG,

@@ -35,17 +35,17 @@ public class ShopController {
     /**
      * Buys an upgrade.
      *
-     * @param upgrade upgrade to buy
+     * @param upgrade upgrade to click.wav.wav
      * @return true if purchase was successful
      */
     public GameActionResult buyUpgrade(@NonNull Upgrade upgrade) {
 
         if (!canBuyUpgrade(upgrade)) {
-            return new GameActionResult(false, null);
+            return new GameActionResult(false, false,null);
         }
 
         if (!player.spendCoins(upgrade.getPrice())) {
-            return new GameActionResult(false, null);
+            return new GameActionResult(false, false,null);
         }
 
         upgrade.buy();
@@ -57,11 +57,11 @@ public class ShopController {
         Achievement achievement =
                 achievementController.checkAchievements();
 
-        return new GameActionResult(true, achievement);
+        return new GameActionResult(true, false, achievement);
     }
 
     /**
-     * Checks whether the player can buy an upgrade.
+     * Checks whether the player can click.wav an upgrade.
      *
      * @param upgrade upgrade
      * @return true if player has enough coins

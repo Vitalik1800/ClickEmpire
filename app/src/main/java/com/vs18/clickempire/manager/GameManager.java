@@ -36,6 +36,11 @@ public final class GameManager {
 
     private static long offlineSeconds;
 
+    private static SoundManager soundManager;
+
+    private static VibrationManager vibrationManager;
+
+
     private GameManager() {
 
     }
@@ -125,8 +130,20 @@ public final class GameManager {
     /**
      * Initialize saveManager.
      */
-    public static void initializeSaveManager(@NonNull Context context) {
-        saveManager = new SaveManager(context.getApplicationContext());
+    public static void initialize(@NonNull Context context) {
+
+        if (saveManager == null) {
+            saveManager = new SaveManager(context.getApplicationContext());
+        }
+
+        if (soundManager == null) {
+            soundManager = new SoundManager();
+            soundManager.initialize(context.getApplicationContext());
+        }
+
+        if (vibrationManager == null) {
+            vibrationManager = new VibrationManager(context.getApplicationContext());
+        }
     }
 
     /**
@@ -206,6 +223,37 @@ public final class GameManager {
     }
 
     /**
+     * Releases game resources.
+     */
+    public static void release() {
+
+        if (soundManager != null) {
+            soundManager.release();
+            soundManager = null;
+        }
+
+    }
+
+    /**
+     * Resets all game progress to the default state
+     * and immediately creates a new save.
+     */
+    public static void resetGame() {
+
+        if (saveManager != null) {
+            saveManager.deleteSave();
+        }
+
+        player = new Player();
+        statistics = new Statistics();
+        achievements = AchievementRepository.getAchievements();
+        upgrades = UpgradeRepository.getUpgrades();
+        offlineSeconds = 0;
+
+        saveGame();
+    }
+
+    /**
      * Returns current player.
      */
     public static Player getPlayer() {
@@ -235,8 +283,32 @@ public final class GameManager {
         return achievements;
     }
 
+    /**
+     * Returns upgrade list.
+     *
+     * @return upgrades
+     */
     public static List<Upgrade> getUpgrades() {
         return upgrades;
+    }
+
+    /**
+     * Returns sound manager.
+     *
+     * @return sound manager
+     */
+    public static SoundManager getSoundManager() {
+        return soundManager;
+    }
+
+    /**
+     * Returns vibration manager.
+     *
+     * @return vibration manager
+     */
+
+    public static VibrationManager getVibrationManager() {
+        return vibrationManager;
     }
 
     public static void setPlayer(Player player) {

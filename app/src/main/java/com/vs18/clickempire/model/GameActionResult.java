@@ -13,6 +13,11 @@ public class GameActionResult {
     private final boolean success;
 
     /**
+     * LevelUp
+     */
+    private final boolean levelUp;
+
+    /**
      * Achievement unlocked by this action.
      * Null if no achievement was unlocked.
      */
@@ -25,10 +30,14 @@ public class GameActionResult {
      * @param success action success
      * @param achievement unlocked achievement or null
      */
-    public GameActionResult(boolean success,
-                          @Nullable Achievement achievement) {
+    public GameActionResult(
+            boolean success,
+            boolean levelUp,
+            @Nullable Achievement achievement
+        ) {
 
         this.success = success;
+        this.levelUp = levelUp;
         this.achievement = achievement;
     }
 
@@ -39,6 +48,15 @@ public class GameActionResult {
      */
     public boolean isSuccess() {
         return success;
+    }
+
+    /**
+     * Returns whether the player leveled up.
+     *
+     * @return true if level increased
+     */
+    public boolean isLevelUp() {
+        return levelUp;
     }
 
     /**
