@@ -5,112 +5,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginHorizontal="@dimen/spacing_md"
+    android:layout_marginTop="@dimen/spacing_sm"
+    android:layout_marginVertical="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true"
+    app:rippleColor="@color/primary_pressed"
+    app:cardElevation="@dimen/spacing_xs"
     app:cardBackgroundColor="@color/surface"
-    app:cardCornerRadius="16dp">
+    app:shapeAppearanceOverlay="@style/ShapeAppearance.ClickEmpire.Card">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_md">
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/play_time"
             android:textStyle="bold"
-            android:textColor="@color/text_secondary" />
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textPlayTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"
+            android:textSize="@dimen/text_xl"
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
+            android:layout_marginBottom="@dimen/spacing_md"
             tools:text="00:00:00"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/clicks"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textClicks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
+            android:layout_marginBottom="@dimen/spacing_md"
             tools:text="12345"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/purchases"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textPurchases"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
+            android:layout_marginBottom="@dimen/spacing_md"
             tools:text="27"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/earned_coins"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textEarnedCoins"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="@dimen/spacing_md"
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
             tools:text="123456"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/highest_balance"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textHighestBalance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            android:layout_marginBottom="16dp"
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
+            android:layout_marginBottom="@dimen/spacing_md"
             tools:text="54321"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/income_per_second"
-            android:textStyle="bold"
-            android:textColor="@color/text_secondary"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Caption" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textIncomePerSecond"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:textColor="@color/text_primary"
-            tools:text="150"/>
+            android:textAppearance="@style/TextAppearance.ClickEmpire.Value"
+            tools:text="150"
+            android:layout_marginBottom="@dimen/spacing_md"/>
 
     </LinearLayout>
 

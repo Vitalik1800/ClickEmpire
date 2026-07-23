@@ -6,4 +6,80 @@
     </style>
 
     <style name="Theme.ClickEmpire" parent="Base.Theme.ClickEmpire" />
+
+    <style name="ShapeAppearance.ClickEmpire.Card"
+        parent="ShapeAppearance.Material3.MediumComponent">
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+
+    </style>
+
+    <style name="ShapeAppearance.ClickEmpire.Button"
+        parent="ShapeAppearance.Material3.SmallComponent">
+
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+
+    </style>
+
+    <style name="Widget.ClickEmpire.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">12dp</item>
+    </style>
+
+    <!-- Typography -->
+
+    <style name="TextAppearance.ClickEmpire.Title"
+        parent="TextAppearance.Material3.TitleLarge">
+
+        <item name="android:textSize">@dimen/text_xxl</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+
+    </style>
+
+    <style name="TextAppearance.ClickEmpire.Subtitle"
+        parent="TextAppearance.Material3.TitleMedium">
+
+        <item name="android:textSize">@dimen/text_lg</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+
+    </style>
+
+    <style name="TextAppearance.ClickEmpire.Body"
+        parent="TextAppearance.Material3.BodyMedium">
+
+        <item name="android:textSize">@dimen/text_md</item>
+        <item name="android:textColor">@color/text_primary</item>
+
+    </style>
+
+    <style name="TextAppearance.ClickEmpire.Caption"
+        parent="TextAppearance.Material3.BodySmall">
+
+        <item name="android:textSize">@dimen/text_sm</item>
+        <item name="android:textColor">@color/text_secondary</item>
+
+    </style>
+
+    <style name="TextAppearance.ClickEmpire.Value"
+        parent="TextAppearance.Material3.TitleMedium">
+
+        <item name="android:textSize">@dimen/text_xl</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+
+    </style>
+
+    <style name="TextAppearance.ClickEmpire.Display"
+        parent="TextAppearance.Material3.DisplaySmall">
+
+        <item name="android:textSize">@dimen/text_display</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:letterSpacing">@dimen/letter_spacing</item>
+
+    </style>
+
 </resources>

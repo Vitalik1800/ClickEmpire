@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing -->
+    <dimen name="spacing_xs">4dp</dimen>
+    <dimen name="spacing_sm">8dp</dimen>
+    <dimen name="spacing_md">16dp</dimen>
+    <dimen name="spacing_lg">24dp</dimen>
+    <dimen name="spacing_xl">32dp</dimen>
+
+    <!-- Corners -->
+    <dimen name="button_corner_radius">12dp</dimen>
+
+    <!-- Text sizes -->
+    <dimen name="text_xs">12sp</dimen>
+    <dimen name="text_sm">14sp</dimen>
+    <dimen name="text_md">16sp</dimen>
+    <dimen name="text_lg">18sp</dimen>
+    <dimen name="text_xl">20sp</dimen>
+    <dimen name="text_xxl">24sp</dimen>
+    <dimen name="text_display">32sp</dimen>
+
+    <!-- Icons -->
+    <dimen name="icon_small">24dp</dimen>
+    <dimen name="icon_medium">64dp</dimen>
+    <dimen name="icon_large">120dp</dimen>
+    <dimen name="coin_size">180dp</dimen>
+
+    <!-- Toolbar -->
+    <dimen name="toolbar_elevation">4dp</dimen>
+    <dimen name="min_width">96dp</dimen>
+    <dimen name="min_height">48dp</dimen>
+    <dimen name="min_height_switch">56dp</dimen>
+    <dimen name="elevation_2">2dp</dimen>
+
+    <item name="letter_spacing" type="dimen" format="float">0.02</item>
+</resources>

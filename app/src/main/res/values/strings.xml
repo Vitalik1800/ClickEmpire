@@ -119,4 +119,16 @@
     <string name="click_power_format">Click Power: %1$s</string>
     <string name="level_format">Level: %1$d</string>
     <string name="upgrade_purchased">Purchased: %1$s</string>
+    <string name="offline_income_message">
+    Offline time:
+    %1$s
+
+    Earned:
+    %2$s coins
+    </string>
+    <string name="achievement_unlocked_message">
+    Achievement unlocked!
+
+    %1$s
+    </string>
 </resources>

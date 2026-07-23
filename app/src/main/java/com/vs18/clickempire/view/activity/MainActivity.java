@@ -18,6 +18,8 @@ import com.vs18.clickempire.manager.SaveManager;
 import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
+import com.vs18.clickempire.util.ActivityAnimation;
+import com.vs18.clickempire.util.AnimationUtilsEx;
 import com.vs18.clickempire.util.Constants;
 import com.vs18.clickempire.util.NumberFormatter;
 import com.vs18.clickempire.util.UiUtils;
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             updateUi();
 
-            UiUtils.showAchievement(MainActivity.this, result);
+            UiUtils.showAchievement(binding.getRoot(), result);
 
             handler.postDelayed(this, Constants.PASSIVE_INCOME_INTERVAL);
         }
@@ -147,7 +149,9 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupListeners() {
 
-        binding.buttonCoin.setOnClickListener(view -> {
+        binding.cardCoin.setOnClickListener(view -> {
+
+            AnimationUtilsEx.animateButton(view);
 
             playClickAnimation();
 
@@ -161,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
             updateUi();
 
-            UiUtils.showAchievement(this, result);
+            UiUtils.showAchievement(binding.getRoot(), result);
 
             if (result.isLevelUp()) {
                 handler.postDelayed(() ->
@@ -250,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, ShopActivity.class);
 
                 startActivity(intent);
+                ActivityAnimation.open(this);
 
                 return true;
             }
@@ -259,6 +264,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, StatisticsActivity.class);
 
                 startActivity(intent);
+                ActivityAnimation.open(this);
 
                 return true;
             }
@@ -268,6 +274,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, AchievementActivity.class);
 
                 startActivity(intent);
+                ActivityAnimation.open(this);
 
                 return true;
             }
@@ -277,6 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, SettingsActivity.class);
 
                 startActivity(intent);
+                ActivityAnimation.open(this);
 
                 return true;
             }

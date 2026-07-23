@@ -126,7 +126,11 @@ public class ShopActivity extends AppCompatActivity {
 
         GameActionResult result = shopController.buyUpgrade(upgrade);
 
-        UiUtils.showUpgrade(this, upgrade, result.isSuccess());
+        UiUtils.showUpgradeWithAchievement(
+                binding.getRoot(),
+                upgrade,
+                result
+        );
 
         if (!result.isSuccess()) {
             return;
@@ -134,8 +138,6 @@ public class ShopActivity extends AppCompatActivity {
 
         GameManager.saveGame();
         updateUi();
-
-        UiUtils.showAchievement(this, result);
     }
 
     @Override

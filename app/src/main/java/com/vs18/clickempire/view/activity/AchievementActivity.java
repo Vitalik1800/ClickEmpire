@@ -35,6 +35,7 @@ public class AchievementActivity extends AppCompatActivity {
     private void initializeRecyclerView() {
 
         adapter = new AchievementAdapter(
+                this,
                 GameManager.getAchievements()
         );
 

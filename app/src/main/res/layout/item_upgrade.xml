@@ -5,23 +5,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="@dimen/spacing_md"
+    android:layout_marginTop="@dimen/spacing_sm"
+    android:layout_marginBottom="@dimen/spacing_sm"
+    app:cardElevation="@dimen/elevation_2"
     app:cardBackgroundColor="@color/surface"
-    app:cardCornerRadius="16dp">
+    app:shapeAppearanceOverlay="@style/ShapeAppearance.ClickEmpire.Card"
+    app:rippleColor="@color/primary_pressed"
+    android:clickable="true"
+    android:focusable="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_md">
 
         <ImageView
             android:id="@+id/imageUpgrade"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/icon_medium"
+            android:layout_height="@dimen/icon_medium"
+            android:scaleType="centerInside"
             android:contentDescription="@string/upgrade_icon"
             android:src="@drawable/ic_upgrade_1"
             tools:src="@drawable/ic_upgrade_1"/>
@@ -29,7 +34,7 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/spacing_md"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -38,27 +43,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_upgrade_name"
-                android:textColor="@color/text_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Title"
                 tools:text="Cursor"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textUpgradeDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:text="@string/default_upgrade_description"
-                android:textColor="@color/text_secondary"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Body"
                 tools:text="Generates coins automatically."/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textUpgradeLevel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/spacing_sm"
                 android:text="@string/default_upgrade_level"
-                android:textColor="@color/text_secondary"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"
                 tools:text="Level: 3"/>
 
             <com.google.android.material.textview.MaterialTextView
@@ -66,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/default_upgrade_income"
-                android:textColor="@color/success"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"
                 tools:text="+10 coins/s"/>
 
         </LinearLayout>
@@ -74,25 +77,32 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:gravity="center_horizontal"
+            android:layout_marginStart="@dimen/spacing_md"
             android:orientation="vertical">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonBuy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:minWidth="@dimen/min_width"
+                android:minHeight="@dimen/min_height"
                 android:text="@string/buy"
+                app:icon="@drawable/ic_cart"
+                app:cornerRadius="@dimen/button_corner_radius"
+                app:iconGravity="textStart"
+                app:rippleColor="@color/primary_pressed"
                 android:textColor="@color/text_primary"
                 app:backgroundTint="@color/primary"
-                app:cornerRadius="12dp"/>
+                style="@style/Widget.ClickEmpire.Button"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/spacing_sm"
                 android:text="@string/default_upgrade_price"
-                android:textColor="@color/text_primary"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Body"
                 tools:text="100"/>
 
         </LinearLayout>

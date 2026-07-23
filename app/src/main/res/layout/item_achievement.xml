@@ -5,54 +5,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="16dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginBottom="8dp"
+    android:layout_marginHorizontal="@dimen/spacing_md"
+    android:layout_marginTop="@dimen/spacing_sm"
+    android:clickable="true"
+    android:focusable="true"
+    app:rippleColor="@color/primary_pressed"
+    android:layout_marginBottom="@dimen/spacing_sm"
     app:cardBackgroundColor="@color/surface"
-    app:cardCornerRadius="16dp">
+    app:shapeAppearanceOverlay="@style/ShapeAppearance.ClickEmpire.Card"
+    app:cardElevation="@dimen/elevation_2">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="16dp">
+        android:padding="@dimen/spacing_md">
 
         <ImageView
             android:id="@+id/imageAchievement"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="@dimen/icon_medium"
+            android:layout_height="@dimen/icon_medium"
             android:contentDescription="@string/achievement_icon"
             android:src="@drawable/ic_achievement_1"
-            tools:src="@drawable/ic_achievement_1"/>
+            tools:src="@drawable/ic_achievement_1"
+            android:scaleType="centerInside"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/spacing_md"
             android:orientation="vertical">
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:textColor="@color/text_primary" />
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Subtitle" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="@color/text_secondary" />
+                android:layout_marginTop="@dimen/spacing_xs"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:textColor="@color/success"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Body"
+                android:layout_marginTop="@dimen/spacing_sm" />
 
         </LinearLayout>
 

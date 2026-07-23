@@ -2,6 +2,7 @@ package com.vs18.clickempire.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.AnimationUtils;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +11,8 @@ import com.vs18.clickempire.R;
 import com.vs18.clickempire.databinding.ActivitySettingsBinding;
 import com.vs18.clickempire.manager.GameManager;
 import com.vs18.clickempire.manager.SettingsManager;
+import com.vs18.clickempire.util.ActivityAnimation;
+import com.vs18.clickempire.util.AnimationUtilsEx;
 import com.vs18.clickempire.util.UiUtils;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -53,6 +56,9 @@ public class SettingsActivity extends AppCompatActivity {
         );
 
         binding.buttonResetProgress.setOnClickListener(v -> {
+
+            AnimationUtilsEx.animateButton(v);
+
             UiUtils.showResetDialog(this, () -> {
 
                 GameManager.resetGame();
@@ -64,8 +70,10 @@ public class SettingsActivity extends AppCompatActivity {
                 );
 
                 startActivity(intent);
+                ActivityAnimation.open(this);
 
                 finish();
+                ActivityAnimation.close(this);
             });
         });
     }

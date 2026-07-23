@@ -1,9 +1,11 @@
 package com.vs18.clickempire.view.adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.vs18.clickempire.R;
@@ -19,14 +21,16 @@ import java.util.List;
 public class AchievementAdapter
     extends RecyclerView.Adapter<AchievementViewHolder> {
 
-    private final List<Achievement> achievements;
+    private final Context context;
 
+    private final List<Achievement> achievements;
     /**
      * Creates a new achievement adapter.
      *
      * @param achievements achievement list
      */
-    public AchievementAdapter(@NonNull List<Achievement> achievements) {
+    public AchievementAdapter(Context context, @NonNull List<Achievement> achievements) {
+        this.context = context;
         this.achievements = achievements;
     }
 
@@ -77,6 +81,13 @@ public class AchievementAdapter
                     R.string.unlocked
             );
 
+            holder.binding.textStatus.setTextColor(
+                    ContextCompat.getColor(
+                            context,
+                            R.color.success
+                    )
+            );
+
         } else {
 
             holder.binding.imageAchievement.setImageResource(
@@ -93,6 +104,13 @@ public class AchievementAdapter
 
             holder.binding.textStatus.setText(
                     R.string.locked
+            );
+
+            holder.binding.textStatus.setTextColor(
+                    ContextCompat.getColor(
+                            context,
+                            R.color.text_secondary
+                    )
             );
         }
 

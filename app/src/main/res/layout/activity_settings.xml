@@ -13,6 +13,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:title="@string/settings"
+        android:elevation="@dimen/spacing_xs"
+        app:navigationIconTint="@color/text_primary"
         android:background="@color/surface"
         app:titleTextColor="@color/text_primary"
         app:layout_constraintTop_toTopOf="parent"
@@ -26,29 +28,35 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        android:clipToPadding="false"
+        android:paddingBottom="@dimen/spacing_lg">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/spacing_md">
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/switchSound"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_height_switch"
                 android:text="@string/sound"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp"/>
+                android:paddingVertical="@dimen/spacing_sm"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Body"
+                android:layout_marginBottom="@dimen/spacing_md"/>
 
             <com.google.android.material.materialswitch.MaterialSwitch
                 android:id="@+id/switchVibration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:minHeight="@dimen/min_height_switch"
+                android:paddingVertical="@dimen/spacing_sm"
                 android:text="@string/vibration"
-                android:textColor="@color/text_primary"
-                android:layout_marginBottom="16dp"/>
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Body"
+                android:layout_marginBottom="@dimen/spacing_md"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/buttonResetProgress"
@@ -56,18 +64,17 @@
                 android:layout_height="wrap_content"
                 android:text="@string/reset_progress"
                 android:textColor="@color/error"
-                app:backgroundTint="@android:color/transparent"
+                style="@style/Widget.Material3.Button.OutlinedButton"
                 app:strokeColor="@color/error"
                 app:strokeWidth="1dp"
-                android:layout_marginBottom="16dp"/>
+                android:layout_marginBottom="@dimen/spacing_lg"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/textVersion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textColor="@color/text_secondary"
-                android:textSize="14sp"
+                android:textAppearance="@style/TextAppearance.ClickEmpire.Caption"
                 tools:text="Version 1.0.0"/>
 
         </LinearLayout>

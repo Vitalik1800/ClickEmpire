@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.vs18.clickempire.databinding.ActivitySplashBinding;
 import com.vs18.clickempire.manager.GameManager;
+import com.vs18.clickempire.util.ActivityAnimation;
 import com.vs18.clickempire.util.Constants;
 
 public class SplashActivity extends AppCompatActivity {
@@ -38,7 +39,10 @@ public class SplashActivity extends AppCompatActivity {
 
         binding.getRoot().postDelayed(() -> {
             startActivity(new Intent(this, MainActivity.class));
+            ActivityAnimation.open(this);
+
             finish();
+            ActivityAnimation.close(this);
         }, 1000);
     }
 }

@@ -10,6 +10,7 @@ import com.vs18.clickempire.R;
 import com.vs18.clickempire.databinding.ItemUpgradeBinding;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Upgrade;
+import com.vs18.clickempire.util.AnimationUtilsEx;
 import com.vs18.clickempire.util.Constants;
 import com.vs18.clickempire.view.holder.UpgradeViewHolder;
 
@@ -89,6 +90,8 @@ public class UpgradeAdapter extends RecyclerView.Adapter<UpgradeViewHolder> {
         holder.binding.buttonBuy.setAlpha(canBuy ? Constants.BUTTON_ENABLED_ALPHA : Constants.BUTTON_DISABLED_ALPHA);
 
         holder.binding.buttonBuy.setOnClickListener(v -> {
+
+            AnimationUtilsEx.animateButton(v);
 
             listener.onBuyClick(upgrade);
 
