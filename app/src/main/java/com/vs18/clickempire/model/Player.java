@@ -39,7 +39,6 @@ public class Player {
      * Creates a new player with default values.
      */
     public Player() {
-        Log.d(Constants.TAG, "NEW PLAYER CREATED");
 
         this.coins = 0;
         this.clickPower = 1;
@@ -65,8 +64,6 @@ public class Player {
      * @param amount amount to add
      */
     public void addCoins(long amount) {
-        Log.d(Constants.TAG,
-                "addCoins(" + amount + "), before=" + coins);
 
         if (amount <= 0) {
             return;
@@ -74,8 +71,6 @@ public class Player {
 
         coins += amount;
 
-        Log.d(Constants.TAG,
-                "after=" + coins);
     }
 
     /**
@@ -216,9 +211,6 @@ public class Player {
     // Setters
 
     public void setCoins(long coins) {
-        Log.d(Constants.TAG,
-                "setCoins(" + coins + ")");
-        new Throwable("setCoins").printStackTrace();
 
         this.coins = Math.max(0, coins);
     }

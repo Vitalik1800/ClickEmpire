@@ -105,6 +105,10 @@ public class Upgrade {
         return income;
     }
 
+    public long getTotalIncome() {
+        return income * level;
+    }
+
     public int getLevel() {
         return level;
     }
