@@ -1,7 +1,5 @@
 package com.vs18.clickempire.model;
 
-import android.util.Log;
-
 import com.vs18.clickempire.util.Constants;
 
 /**
@@ -227,6 +225,7 @@ public class Player {
         this.level = Math.max(1, level);
     }
 
+    @SuppressWarnings("unused")
     public void setExperience(long experience) {
         this.experience = Math.max(0, experience);
     }

@@ -153,10 +153,6 @@ public final class GameManager {
 
         if (saveManager != null) {
 
-            Log.d(Constants.TAG,
-                    "SAVE GAME caller");
-            new Throwable().printStackTrace();
-
             saveManager.save(createSaveData());
 
             Log.d(Constants.TAG,
@@ -164,8 +160,6 @@ public final class GameManager {
                             + System.identityHashCode(player)
                             + " coins="
                             + player.getCoins());
-
-            new Throwable("SAVE GAME").printStackTrace();
         }
     }
 
@@ -323,6 +317,7 @@ public final class GameManager {
         GameManager.achievements = achievements;
     }
 
+    @SuppressWarnings("unused")
     public static void setUpgrades(List<Upgrade> upgrades) {
         GameManager.upgrades = upgrades;
     }

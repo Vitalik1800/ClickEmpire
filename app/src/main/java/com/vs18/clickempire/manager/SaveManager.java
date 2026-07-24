@@ -65,12 +65,6 @@ public class SaveManager {
 
             outputStream.write(json.getBytes(StandardCharsets.UTF_8));
 
-            Log.d(Constants.TAG,
-                    "SAVE caller = " + Log.getStackTraceString(new Throwable()));
-
-            Log.d(Constants.TAG,
-                    Log.getStackTraceString(new Throwable("SAVE STACK")));
-
         } catch (IOException e) {
             Log.e(Constants.TAG, "Error saving data: " + e.getMessage());
         }
