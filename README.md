@@ -155,6 +155,6 @@ This project is licensed under the **MIT License**.
 
 ## Author
 
-**Vitalii**
+**Vitaly Semchyshyn**
 
 2026
