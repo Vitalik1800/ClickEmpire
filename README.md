@@ -102,7 +102,6 @@ screenshots/
 ### Achievements
 
 ![Achievements](screenshots/achievements.png)
-https://github.com/Vitalik1800/ClickEmpire/blob/main/screenshoots/achievements.png
 
 ### Statistics
 
