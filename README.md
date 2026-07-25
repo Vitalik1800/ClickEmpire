@@ -72,10 +72,7 @@ Examples:
 
 A gameplay demonstration is available in the `demo/` directory.
 
-```text
-demo/
-└── click_empire_demo.mp4
-```
+![🎮 Gameplay video](demo/click_empire_demo.mp4)
 
 ## Screenshots
 
