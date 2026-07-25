@@ -1,11 +1,8 @@
 package com.vs18.clickempire.controller;
 
-import android.util.Log;
-
 import com.vs18.clickempire.model.Achievement;
 import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
-import com.vs18.clickempire.util.Constants;
 
 /**
  * Main game controller.
@@ -61,17 +58,11 @@ public class MainController {
 
         long income = player.getIncome();
 
-        Log.d(Constants.TAG,
-                "Income = " + income);
-
         if (income <= 0) {
             return new GameActionResult(false, false,null);
         }
 
         player.addCoins(income);
-
-        Log.d(Constants.TAG,
-                "Coins = " + player.getCoins());
 
         statisticsController.addEarnedCoins(income);
         updateHighestBalance();
@@ -85,6 +76,7 @@ public class MainController {
     /**
      * Increases player level.
      */
+    @SuppressWarnings("unused")
     public GameActionResult levelUp() {
         player.levelUp();
 
@@ -111,6 +103,7 @@ public class MainController {
     /**
      * Returns statistics model.
      */
+    @SuppressWarnings("unused")
     public StatisticsController getStatisticsController() {
         return statisticsController;
     }

@@ -115,18 +115,22 @@ public class Upgrade {
 
     // Setters
 
+    @SuppressWarnings("unused")
     public void setNameResId(int nameResId) {
         this.nameResId = nameResId;
     }
 
+    @SuppressWarnings("unused")
     public void setDescriptionResId(int descriptionResId) {
         this.descriptionResId = descriptionResId;
     }
 
+    @SuppressWarnings("unused")
     public void setIcon(int icon) {
         this.icon = icon;
     }
 
+    @SuppressWarnings("unused")
     public void setPrice(long price) {
         this.price = Math.max(0, price);
     }

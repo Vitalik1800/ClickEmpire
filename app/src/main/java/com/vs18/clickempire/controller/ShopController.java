@@ -35,7 +35,7 @@ public class ShopController {
     /**
      * Buys an upgrade.
      *
-     * @param upgrade upgrade to click.wav.wav
+     * @param upgrade upgrade to click.wav
      * @return true if purchase was successful
      */
     public GameActionResult buyUpgrade(@NonNull Upgrade upgrade) {
@@ -76,6 +76,7 @@ public class ShopController {
      * @param upgrade upgrade
      * @return current price
      */
+    @SuppressWarnings("unused")
     public long getUpgradePrice(@NonNull Upgrade upgrade) {
         return upgrade.getPrice();
     }
@@ -90,6 +91,7 @@ public class ShopController {
     /**
      * Returns statistics model.
      */
+    @SuppressWarnings("unused")
     public StatisticsController getStatisticsController() {
         return statisticsController;
     }

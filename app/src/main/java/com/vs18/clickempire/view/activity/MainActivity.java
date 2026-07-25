@@ -10,11 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.vs18.clickempire.R;
 import com.vs18.clickempire.controller.AchievementController;
+import com.vs18.clickempire.controller.GameCompletionController;
 import com.vs18.clickempire.controller.MainController;
 import com.vs18.clickempire.controller.StatisticsController;
 import com.vs18.clickempire.databinding.ActivityMainBinding;
 import com.vs18.clickempire.manager.GameManager;
-import com.vs18.clickempire.manager.SaveManager;
 import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     private MainController mainController;
     private StatisticsController statisticsController;
     private AchievementController achievementController;
+    private GameCompletionController gameCompletionController;
 
     private ActivityMainBinding binding;
 
@@ -44,13 +45,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
 
-            Log.d(Constants.TAG, "Passive income tick");
-
             GameActionResult result = mainController.addPassiveIncome();
 
             statisticsController.addPlayTime(1);
 
             updateUi();
+
+            checkGameCompletion();
 
             UiUtils.showAchievement(binding.getRoot(), result);
 
@@ -70,12 +71,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Log.d(Constants.TAG,
-                "Main onCreate player = "
-                        + GameManager.getPlayer().getCoins()
-                        + " hash="
-                        + System.identityHashCode(GameManager.getPlayer()));
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -93,10 +88,6 @@ public class MainActivity extends AppCompatActivity {
 
         updateUi();
 
-        Log.d(Constants.TAG,
-                "Dialog: seconds=" + offlineSeconds
-                        + ", coins=" + offlineCoins);
-
         UiUtils.showOfflineIncome(
                 MainActivity.this,
                 offlineSeconds,
@@ -110,16 +101,7 @@ public class MainActivity extends AppCompatActivity {
     private void initializeModels() {
         player = GameManager.getPlayer();
 
-        Log.d(Constants.TAG,
-                "initializeModels player = "
-                        + player.getCoins()
-                        + " hash="
-                        + System.identityHashCode(player));
-
         statistics = GameManager.getStatistics();
-
-        Log.d(Constants.TAG,
-                "Player hash = " + System.identityHashCode(player));
     }
 
     /**
@@ -135,6 +117,13 @@ public class MainActivity extends AppCompatActivity {
         );
 
         mainController = new MainController(player, statisticsController, achievementController);
+
+        gameCompletionController =
+                new GameCompletionController(
+                        player,
+                        GameManager.getUpgrades(),
+                        GameManager.getAchievements()
+                );
     }
 
     /**
@@ -164,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
             GameActionResult result = mainController.click();
 
             updateUi();
+
+            checkGameCompletion();
 
             UiUtils.showAchievement(binding.getRoot(), result);
 
@@ -224,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Plays coin click animation.
+     * Plays logo.png click animation.
      */
     private void playClickAnimation() {
 
@@ -293,15 +284,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Checks whether the game has been completed.
+     */
+    private void checkGameCompletion() {
+
+        if (!gameCompletionController.isGameCompleted()) {
+            return;
+        }
+
+        if (player.isGameCompleted()) {
+            return;
+        }
+
+        player.setGameCompleted(true);
+
+        UiUtils.showGameCompletedDialog(this);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
 
-        Log.d(Constants.TAG,
-                "onResume coins="
-                        + player.getCoins()
-                        + " hash="
-                        + System.identityHashCode(player));
+        updateUi();
+
+        checkGameCompletion();
 
         handler.removeCallbacks(autoSaveRunnable);
         handler.postDelayed(autoSaveRunnable, Constants.SAVE_INTERVAL);

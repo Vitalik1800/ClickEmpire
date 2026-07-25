@@ -120,15 +120,27 @@
     <string name="level_format">Level: %1$d</string>
     <string name="upgrade_purchased">Purchased: %1$s</string>
     <string name="offline_income_message">
-    Offline time:
-    %1$s
+        Offline time:
+        %1$s
 
-    Earned:
-    %2$s coins
+        Earned:
+        %2$s coins
     </string>
     <string name="achievement_unlocked_message">
-    Achievement unlocked!
+        Achievement unlocked!
 
-    %1$s
+        %1$s
+    </string>
+
+    <string name="game_completed_title">
+        Congratulations!
+    </string>
+
+    <string name="game_completed_message">
+        You have completed Click Empire!\n\nYou reached the maximum player level and mastered the game.\n\nThank you for playing!\nYou can continue playing to improve your statistics and earn more coins.
+    </string>
+
+    <string name="continue_playing">
+        Continue Playing
     </string>
 </resources>

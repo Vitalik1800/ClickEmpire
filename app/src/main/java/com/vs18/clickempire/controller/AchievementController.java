@@ -21,12 +21,10 @@ public class AchievementController {
      * Creates a new achievement controller.
      *
      * @param achievements achievement list
-     * @param player player model
-     * @param statistics statistics model
+     * @param player       player model
+     * @param statistics   statistics model
      */
-    public AchievementController(List<Achievement> achievements,
-                                 Player player,
-                                 Statistics statistics) {
+    public AchievementController(List<Achievement> achievements, Player player, Statistics statistics) {
 
         this.achievements = achievements;
         this.player = player;
@@ -111,6 +109,7 @@ public class AchievementController {
      *
      * @param id achievement id
      */
+    @SuppressWarnings("unused")
     public void unlockAchievementById(int id) {
 
         for (Achievement achievement : achievements) {
@@ -143,6 +142,7 @@ public class AchievementController {
     /**
      * Locks all achievements.
      */
+    @SuppressWarnings("unused")
     public void resetAchievements() {
 
         for (Achievement achievement : achievements) {

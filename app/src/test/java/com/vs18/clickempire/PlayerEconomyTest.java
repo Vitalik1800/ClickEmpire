@@ -50,7 +50,7 @@ public class PlayerEconomyTest {
     }
 
     /**
-     * Negative coin amount should be ignored.
+     * Negative logo.png amount should be ignored.
      */
     @Test
     public void addCoins_negative_shouldDoNothing() {

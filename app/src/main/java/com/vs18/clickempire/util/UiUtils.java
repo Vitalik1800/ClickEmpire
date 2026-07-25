@@ -2,7 +2,6 @@ package com.vs18.clickempire.util;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -17,47 +16,6 @@ public final class UiUtils {
 
     private UiUtils() {
 
-    }
-
-    /**
-     * Shows upgrade purchase result.
-     *
-     * @param view activity view
-     * @param upgrade purchased upgrade
-     */
-    public static void showUpgrade(
-            @NonNull View view,
-            @NonNull Upgrade upgrade,
-            boolean success
-    ) {
-
-        final Context context = view.getContext();
-        final String message;
-
-        if (success) {
-
-            message = context.getString(
-                    R.string.upgrade_purchased,
-                    context.getString(upgrade.getNameResId())
-            );
-
-            GameManager.getSoundManager().play(
-                    GameManager.getSoundManager().getBuySound()
-            );
-
-        } else {
-            message = context.getString(R.string.not_enough_coins);
-
-            GameManager.getSoundManager().play(
-                    GameManager.getSoundManager().getErrorSound()
-            );
-        }
-
-        Snackbar.make(
-                view,
-                message,
-                Snackbar.LENGTH_SHORT
-        ).show();
     }
 
     /**
@@ -168,8 +126,8 @@ public final class UiUtils {
             return;
         }
 
-        final long hours = offlineSeconds / Constants.SECONDS_0F_HOUR;
-        final long minutes = (offlineSeconds % Constants.SECONDS_0F_HOUR) / Constants.SECONDS_OF_MINUTE;
+        final long hours = offlineSeconds / Constants.SECONDS_OF_HOUR;
+        final long minutes = (offlineSeconds % Constants.SECONDS_OF_HOUR) / Constants.SECONDS_OF_MINUTE;
         final long seconds = offlineSeconds % Constants.SECONDS_OF_MINUTE;
 
         String time;
@@ -192,6 +150,26 @@ public final class UiUtils {
                         )
                 )
                 .setPositiveButton(android.R.string.ok, null)
+                .show();
+    }
+
+    /**
+     * Shows the game completed dialog.
+     *
+     * @param context activity context
+     */
+    public static void showGameCompletedDialog(
+            @NonNull Context context
+    ) {
+
+        new MaterialAlertDialogBuilder(context)
+                .setTitle(R.string.game_completed_title)
+                .setMessage(R.string.game_completed_message)
+                .setPositiveButton(
+                        R.string.continue_playing,
+                        (dialog, which) -> dialog.dismiss()
+                )
+                .setCancelable(false)
                 .show();
     }
 

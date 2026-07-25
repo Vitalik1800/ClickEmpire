@@ -174,7 +174,7 @@ public class AchievementStatisticsIntegrationTest {
 
     /**
      * Verifies that player balance
-     * unlocks the coin achievement.
+     * unlocks the logo.png achievement.
      */
     @Test
     public void coins_shouldUnlockAchievement() {
