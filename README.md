@@ -142,7 +142,7 @@ app/build/outputs/apk/release/
 
 ## Requirements
 
-* Android 8.0 (API 26) or higher
+* Android 6.0 (API 23) or higher
 * Java 17
 * Android Studio Narwhal or newer
 
