@@ -22,7 +22,7 @@
         <ImageView
             android:layout_width="@dimen/icon_large"
             android:layout_height="@dimen/icon_large"
-            android:src="@drawable/ic_lock"
+            android:src="@drawable/logo"
             android:contentDescription="@string/app_name"
             android:scaleType="fitCenter"/>
 

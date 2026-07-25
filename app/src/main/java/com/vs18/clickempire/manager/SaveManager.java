@@ -1,6 +1,5 @@
 package com.vs18.clickempire.manager;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -47,21 +46,7 @@ public class SaveManager {
         try (FileOutputStream outputStream =
                     context.openFileOutput(SAVE_FILE_NAME, Context.MODE_PRIVATE)) {
 
-            Log.d(Constants.TAG,
-                    "SAVE -> coins=" + saveData.getPlayer().getCoins()
-                            + ", income=" + saveData.getPlayer().getIncome()
-                            + ", hash=" + System.identityHashCode(saveData.getPlayer()));
-
             String json = gson.toJson(saveData);
-
-            Log.d(Constants.TAG, json);
-
-            Log.d(Constants.TAG,
-                    "Saving: coins=" + saveData.getPlayer().getCoins()
-                            + ", clickPower=" + saveData.getPlayer().getClickPower()
-                            + ", income=" + saveData.getPlayer().getIncome()
-                            + ", level=" + saveData.getPlayer().getLevel()
-                            + ", Last save time= " + saveData.getLastSaveTime());
 
             outputStream.write(json.getBytes(StandardCharsets.UTF_8));
 
@@ -76,9 +61,6 @@ public class SaveManager {
      * @return save data
      */
     public SaveData load() {
-
-        Log.d(Constants.TAG,
-                "Save exists = " + context.getFileStreamPath(SAVE_FILE_NAME).exists());
 
         try (FileInputStream inputStream =
                      context.openFileInput(SAVE_FILE_NAME);
@@ -96,33 +78,19 @@ public class SaveManager {
 
             String json = jsonBuilder.toString();
 
-            Log.d(Constants.TAG, "JSON = " + json);
-
             SaveData saveData = gson.fromJson(json, SaveData.class);
 
             if (saveData == null) {
-                Log.w(Constants.TAG, "Save file is empty.");
                 return null;
             }
 
             if (!SaveValidator.isValid(saveData)) {
-                Log.e(Constants.TAG, "Save file is corrupted.");
                 return null;
             }
-
-            Log.d(Constants.TAG,
-                    "Loaded: coins=" + saveData.getPlayer().getCoins()
-                            + ", clickPower=" + saveData.getPlayer().getClickPower()
-                            + ", income=" + saveData.getPlayer().getIncome()
-                            + ", level=" + saveData.getPlayer().getLevel());
-
-            Log.d(Constants.TAG,
-                    "JSON player = " + gson.toJson(saveData.getPlayer()));
 
             return saveData;
 
         } catch (IOException | JsonSyntaxException e) {
-            Log.e(Constants.TAG, "Error loading data", e);
             return null;
         }
 

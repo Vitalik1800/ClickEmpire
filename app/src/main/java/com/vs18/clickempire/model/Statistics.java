@@ -21,7 +21,7 @@ public class Statistics {
     private long earnedCoins;
 
     /**
-     * Highest coin balance reached.
+     * Highest logo.png balance reached.
      */
     private long highestBalance;
 

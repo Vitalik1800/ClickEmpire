@@ -75,21 +75,22 @@
         android:focusable="true"
         app:cardBackgroundColor="@color/transparent"
         app:cardElevation="0dp"
-        app:rippleColor="@color/primary_pressed"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-        app:layout_constraintVertical_bias="0.5"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/cardStats"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/cardStats"
+        app:layout_constraintVertical_bias="0.5"
+        app:rippleColor="@color/primary_pressed"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">
 
         <ImageView
+            android:layout_gravity="center"
             android:id="@+id/buttonCoin"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="@dimen/coin_size_small"
+            android:layout_height="@dimen/coin_size_small"
             android:contentDescription="@string/app_name"
-            android:src="@drawable/ic_upgrade_1"
-            android:scaleType="centerInside"/>
+            android:scaleType="centerInside"
+            android:src="@drawable/coin" />
 
     </com.google.android.material.card.MaterialCardView>
 

@@ -22,8 +22,8 @@ public final class TimeFormatter {
     @NonNull
     public static String format(long seconds) {
 
-        long hours = seconds / Constants.SECONDS_0F_HOUR;
-        long minutes = (seconds % Constants.SECONDS_0F_HOUR) / Constants.SECONDS_OF_MINUTE;
+        long hours = seconds / Constants.SECONDS_OF_HOUR;
+        long minutes = (seconds % Constants.SECONDS_OF_HOUR) / Constants.SECONDS_OF_MINUTE;
         long secs = seconds % Constants.SECONDS_OF_MINUTE;
 
         return String.format(

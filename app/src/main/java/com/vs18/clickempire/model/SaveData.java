@@ -94,6 +94,7 @@ public class SaveData {
         this.statistics = statistics;
     }
 
+    @SuppressWarnings("unused")
     public void setUpgrades(List<Upgrade> upgrades) {
         this.upgrades = upgrades;
     }
@@ -102,6 +103,7 @@ public class SaveData {
         this.achievements = achievements;
     }
 
+    @SuppressWarnings("unused")
     public void setLastSaveTime(long lastSaveTime) {
         this.lastSaveTime = lastSaveTime;
     }

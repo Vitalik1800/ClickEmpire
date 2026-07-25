@@ -3,6 +3,7 @@ package com.vs18.clickempire.model;
 /**
  * Stores user game settings.
  */
+@SuppressWarnings("unused")
 public class Settings {
 
     /**

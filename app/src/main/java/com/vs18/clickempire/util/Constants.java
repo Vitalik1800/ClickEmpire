@@ -58,7 +58,7 @@ public final class Constants {
     /**
      * Seconds of hour
      */
-    public static final long SECONDS_0F_HOUR = 3600L;
+    public static final long SECONDS_OF_HOUR = 3600L;
 
     /**
      * Minutes of hour
@@ -69,6 +69,11 @@ public final class Constants {
      * Android Logs
      */
     public static final String TAG = "ClickEmpire";
+
+    /**
+     * Maximum level for each upgrade.
+     */
+    public static final int MAX_UPGRADE_LEVEL = 100;
 
     private Constants() {
 

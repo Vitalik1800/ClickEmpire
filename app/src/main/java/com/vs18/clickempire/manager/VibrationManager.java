@@ -4,11 +4,8 @@ import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
-
-import com.vs18.clickempire.util.Constants;
 
 /**
  * Manages device vibration effects.
@@ -37,21 +34,12 @@ public class VibrationManager {
             return;
         }
 
-        Log.d(Constants.TAG, "vibrate() called");
-
-        Log.d(Constants.TAG,
-                "enabled = " + settingsManager.isVibrationEnabled());
-
         Vibrator vibrator =
                 (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 
         if (vibrator == null || !vibrator.hasVibrator()) {
-            Log.d(Constants.TAG, "Vibrator is null");
             return;
         }
-
-        Log.d(Constants.TAG,
-                "hasVibrator = " + vibrator.hasVibrator());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator.vibrate(

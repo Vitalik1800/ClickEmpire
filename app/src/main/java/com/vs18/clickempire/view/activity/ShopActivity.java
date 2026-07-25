@@ -1,7 +1,6 @@
 package com.vs18.clickempire.view.activity;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -16,7 +15,6 @@ import com.vs18.clickempire.model.GameActionResult;
 import com.vs18.clickempire.model.Player;
 import com.vs18.clickempire.model.Statistics;
 import com.vs18.clickempire.model.Upgrade;
-import com.vs18.clickempire.repository.UpgradeRepository;
 import com.vs18.clickempire.util.NumberFormatter;
 import com.vs18.clickempire.util.UiUtils;
 import com.vs18.clickempire.view.adapter.UpgradeAdapter;

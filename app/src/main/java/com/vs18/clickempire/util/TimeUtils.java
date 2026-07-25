@@ -1,5 +1,6 @@
 package com.vs18.clickempire.util;
 
+@SuppressWarnings("unused")
 public final class TimeUtils {
 
     private TimeUtils() {

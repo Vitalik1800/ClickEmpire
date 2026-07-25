@@ -34,6 +34,11 @@ public class Player {
     private long experience;
 
     /**
+     * Indicates whether the game has already been completed.
+     */
+    private boolean gameCompleted;
+
+    /**
      * Creates a new player with default values.
      */
     public Player() {
@@ -43,6 +48,7 @@ public class Player {
         this.income = 0;
         this.level = 1;
         this.experience = 0;
+        this.gameCompleted = false;
     }
 
     /**
@@ -54,6 +60,7 @@ public class Player {
         this.income = income;
         this.level = level;
         this.experience = experience;
+        this.gameCompleted = false;
     }
 
     /**
@@ -176,6 +183,15 @@ public class Player {
     }
 
     /**
+     * Returns whether the player has completed the game.
+     *
+     * @return true if maximum level reached
+     */
+    public boolean hasCompletedGame() {
+        return level >= Constants.MAX_LEVEL;
+    }
+
+    /**
      * Returns required experience for the next level.
      *
      * @return required experience
@@ -206,6 +222,10 @@ public class Player {
         return experience;
     }
 
+    public boolean isGameCompleted() {
+        return gameCompleted;
+    }
+
     // Setters
 
     public void setCoins(long coins) {
@@ -228,5 +248,9 @@ public class Player {
     @SuppressWarnings("unused")
     public void setExperience(long experience) {
         this.experience = Math.max(0, experience);
+    }
+
+    public void setGameCompleted(boolean gameCompleted) {
+        this.gameCompleted = gameCompleted;
     }
 }

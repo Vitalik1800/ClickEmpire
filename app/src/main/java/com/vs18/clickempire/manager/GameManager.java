@@ -1,7 +1,6 @@
 package com.vs18.clickempire.manager;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -51,25 +50,7 @@ public final class GameManager {
     public static void loadGame(@NonNull SaveData saveData) {
 
         if (saveData.getPlayer() != null) {
-
-            Log.d(Constants.TAG,
-                    "LOAD BEFORE -> hash=" + System.identityHashCode(player)
-                            + ", coins=" + player.getCoins());
-
-            Log.d(Constants.TAG,
-                    "LOAD FROM SAVE -> hash="
-                            + System.identityHashCode(saveData.getPlayer())
-                            + ", coins=" + saveData.getPlayer().getCoins());
-
             player = saveData.getPlayer();
-
-            Log.d(Constants.TAG,
-                    "LOAD AFTER -> hash="
-                            + System.identityHashCode(player)
-                            + ", coins=" + player.getCoins());
-
-            Log.d(Constants.TAG,
-                    "Player hash = " + System.identityHashCode(player));
         }
 
         if (saveData.getStatistics() != null) {
@@ -94,7 +75,6 @@ public final class GameManager {
         SaveData saveData = saveManager.load();
 
         if (saveData == null) {
-            Log.w(Constants.TAG, "Using default game state.");
             return false;
         }
 
@@ -109,20 +89,6 @@ public final class GameManager {
                 offlineSeconds,
                 Constants.OFFLINE_LIMIT
         );
-
-        Log.d(
-                Constants.TAG,
-                "Offline time = " + offlineSeconds + " sec"
-        );
-
-        Log.d(Constants.TAG,
-                "lastSaveTime = " + saveData.getLastSaveTime());
-
-        Log.d(Constants.TAG,
-                "currentTime = " + currentTime);
-
-        Log.d(Constants.TAG,
-                "offlineSeconds = " + offlineSeconds);
 
         return true;
     }
@@ -152,14 +118,7 @@ public final class GameManager {
     public static void saveGame() {
 
         if (saveManager != null) {
-
             saveManager.save(createSaveData());
-
-            Log.d(Constants.TAG,
-                    "SAVE GAME player hash="
-                            + System.identityHashCode(player)
-                            + " coins="
-                            + player.getCoins());
         }
     }
 
@@ -188,12 +147,6 @@ public final class GameManager {
      */
     public static long applyOfflineIncome() {
 
-        Log.d(Constants.TAG,
-                "Income = " + player.getIncome());
-
-        Log.d(Constants.TAG,
-                "Offline seconds = " + offlineSeconds);
-
         if (offlineSeconds <= 0) {
             return 0;
         }
@@ -207,9 +160,6 @@ public final class GameManager {
             player.addCoins(offlineCoins);
             statistics.addEarnedCoins(offlineCoins);
         }
-
-        Log.d(Constants.TAG,
-                "Offline coins = " + offlineCoins);
 
         offlineSeconds = 0;
 
