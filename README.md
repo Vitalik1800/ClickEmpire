@@ -93,7 +93,7 @@ screenshots/
 
 ### Main Screen
 
-![Main Screen](screenshots/main_screen.png)
+![main_screen](screenshots/main_screen.png)
 
 ### Shop
 
