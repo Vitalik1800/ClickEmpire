@@ -1,32 +1,49 @@
 # Click Empire
 
-Click Empire is an **Android Clicker / Idle game** where players earn coins, purchase upgrades, unlock achievements, and build their own virtual empire.
+Click Empire is a modern Android Clicker / Idle game developed in Java.
+
+Players earn coins, purchase upgrades, unlock achievements, gain experience, and build their own virtual empire through active clicking and passive income.
+
+---
 
 ## Features
 
-* Coin clicking mechanic
-* Passive income system
-* 20 upgradable items
-* 15 achievements
-* Player level and experience system
-* Detailed game statistics
-* Offline income
-* Automatic game saving
-* Sound effects and vibration support
-* Reset progress feature
-* Game completion system
+- Coin clicking mechanic
+- Passive income system
+- 20 upgradable items
+- 15 achievements
+- Player level and experience system
+- Detailed game statistics
+- Offline income
+- Automatic game saving
+- Sound effects
+- Vibration support
+- Reset progress feature
+- Game completion system
+
+---
 
 ## Technologies
 
-* Java 17
-* Android SDK
-* AndroidX
-* Material Design 3
-* View Binding
-* RecyclerView
-* SharedPreferences
-* Gson
-* Gradle
+- Java 17
+- Android SDK
+- AndroidX
+- Material Design 3
+- View Binding
+- RecyclerView
+- SharedPreferences
+- Gson
+- Gradle
+
+---
+
+## Requirements
+
+- Android Studio Meerkat or newer
+- JDK 17
+- Android API 26+
+
+---
 
 ## Architecture
 
@@ -36,49 +53,61 @@ The project follows the **MVC (Model–View–Controller)** architecture.
 
 Contains the game's data and business logic.
 
-Examples:
+Classes:
 
-* Player
-* Upgrade
-* Achievement
-* Statistics
-* Settings
+- Player
+- Upgrade
+- Achievement
+- Statistics
+- Settings
 
 ### View
 
 Responsible for the user interface.
 
-Examples:
+Activities:
 
-* MainActivity
-* ShopActivity
-* AchievementActivity
-* StatisticsActivity
-* SettingsActivity
+- MainActivity
+- ShopActivity
+- AchievementActivity
+- StatisticsActivity
+- SettingsActivity
 
 ### Controller
 
 Handles the game logic and communication between models and views.
 
-Examples:
+Controllers:
 
-* MainController
-* ShopController
-* AchievementController
-* StatisticsController
-* GameCompletionController
+- MainController
+- ShopController
+- AchievementController
+- StatisticsController
+- GameCompletionController
 
-## Demo
+---
 
-A gameplay demonstration is available in the `demo/` directory.
+## Project Structure
 
-🎮 Gameplay video: `demo/click_empire_demo.mp4`
+```
+ClickEmpire/
+│
+├── app/
+├── demo/
+├── docs/
+├── screenshots/
+├── README.md
+├── LICENSE
+└── build.gradle
+```
+
+---
 
 ## Screenshots
 
 Screenshots are available in the `screenshots/` directory.
 
-```text
+```
 screenshots/
 ├── main_screen.png
 ├── shop.png
@@ -88,70 +117,79 @@ screenshots/
 └── game_completed.png
 ```
 
-### Main Screen
+---
 
-![main_screen](screenshots/main_screen.png)
+## Demo
 
-### Shop
+A gameplay demonstration is available in the `demo/` directory.
 
-![Shop](screenshots/shop.png)
+🎮 Gameplay video:
 
-### Achievements
+```
+demo/click_empire_demo.mp4
+```
 
-![Achievements](screenshots/achievements.png)
+---
 
-### Statistics
+## Testing
 
-![Statistics](screenshots/statistics.png)
+The project includes unit tests covering:
 
-### Settings
+- Economy calculations
+- Upgrade purchasing
+- Achievement unlocking
+- Offline income calculations
+- Player statistics
+- Save system
 
-![Settings](screenshots/settings.png)
+---
 
-### Game Completed
+## Build
 
-![Game Completed](screenshots/game_completed.png)
-
-## Installation
-
-1. Clone the repository:
+Clone the repository:
 
 ```bash
-git clone https://github.com/Vitalik1800/ClickEmpire.git
+git clone https://github.com/username/ClickEmpire.git
 ```
 
-2. Open the project in Android Studio.
-
-3. Wait for Gradle synchronization.
-
-4. Build and run the application on an emulator or an Android device.
-
-## Building the Release Version
-
-Generate a signed release APK using Gradle:
+Open the project in **Android Studio** and build it using Gradle:
 
 ```bash
-./gradlew assembleRelease
+./gradlew assembleDebug
 ```
 
-The generated APK will be located at:
+Or simply open the project and click **Run**.
 
-```text
-app/build/outputs/apk/release/
-```
+---
 
-## Requirements
+## Roadmap
 
-* Android 6.0 (API 23) or higher
-* Java 17
-* Android Studio Narwhal or newer
+### Version 1.0
+
+- Initial release
+- Complete clicker gameplay
+- Shop system
+- Achievements
+- Statistics
+- Offline income
+- Automatic saving
+
+### Version 1.1
+
+- Additional upgrades
+- UI improvements
+- Performance optimizations
+- Bug fixes
+
+### Version 2.0
+
+- Prestige system
+- Daily rewards
+- New achievements
+- Additional gameplay content
+
+---
 
 ## License
 
 This project is licensed under the **MIT License**.
-
-## Author
-
-**Vitaly Semchyshyn**
-
-2026
