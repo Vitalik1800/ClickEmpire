@@ -149,7 +149,7 @@ The project includes unit tests covering:
 Clone the repository:
 
 ```bash
-git clone https://github.com/username/ClickEmpire.git
+git clone https://github.com/Vitalik1800/ClickEmpire.git
 ```
 
 Open the project in **Android Studio** and build it using Gradle:
